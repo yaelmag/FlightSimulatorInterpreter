@@ -8,12 +8,14 @@
 #include <vector>
 #include <map>
 #include "Command.h"
+#include "OpenServerCommand.h"
 using namespace std;
 
 class Interpeter {
 map<string, Command> commands;
 
 public:
+    Interpeter();
     vector<string> lexer(string info);
     void parser(vector<string> info);
 };
