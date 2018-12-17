@@ -2,15 +2,10 @@
 // Created by adi on 17/12/18.
 //
 
-#include "Interpeter.h"
-#include <sstream>
+#include "Lexer.h"
 
-Interpeter:: Interpeter() {
-    OpenServerCommand openDataServer = OpenServerCommand();
-    commands["openDataServer"] = openDataServer;
-}
 
-vector<string> Interpeter:: lexer(string script) {
+vector<string> Lexer:: splitScript(string script) {
     vector<string> splitScript;
     string word = "";
 
@@ -18,7 +13,7 @@ vector<string> Interpeter:: lexer(string script) {
     for (int i = 0; i < script.length(); i++) {
         // add the current 'word' and ',' to the vector
         if (script[i] == ',') {
-            if (word != " ") {
+            if ((word != " ") && (word != "")) {
                 // add the current word
                 splitScript.push_back(word);
             }
@@ -28,15 +23,15 @@ vector<string> Interpeter:: lexer(string script) {
             splitScript.push_back(word);
             // reset the word
             word = "";
-          // jump over space or tab and add the current 'word'
+            // jump over space or tab and add the current 'word'
         } else if ((script[i] == ' ') || (script[i] == '\t')) {
-            if (word != " ") {
+            if ((word != " ") && (word != "")) {
                 // add the current word
                 splitScript.push_back(word);
             }
             // reset the word
             word = "";
-          // if the current char is arithmetic operator
+            // if the current char is arithmetic operator
         } else if (((script[i] == '=') || (script[i] == '+') || (script[i] == '-') ||
                     (script[i] == '/') || (script[i] == '*') || (script[i] == '(') ||
                     (script[i] == ')'))) {
@@ -55,9 +50,9 @@ vector<string> Interpeter:: lexer(string script) {
                     splitScript.push_back(word);
                     // reset the word
                     word = "";
-                  // if the tokens don't separated with spaces
+                    // if the tokens don't separated with spaces
                 } else {
-                    if (word != " ") {
+                    if ((word != " ") && (word != "")) {
                         // add the current word
                         splitScript.push_back(word);
                     }
@@ -72,6 +67,10 @@ vector<string> Interpeter:: lexer(string script) {
         } else {
             word += script[i];
         }
+    }
+    if ((word != " ") && (word != "")) {
+        // add the current word
+        splitScript.push_back(word);
     }
     return splitScript;
 }

@@ -2,8 +2,8 @@
 // Created by adi on 17/12/18.
 //
 
-#ifndef PROJECT1_INTERPETER_H
-#define PROJECT1_INTERPETER_H
+#ifndef PROJECT1_PARSER_H
+#define PROJECT1_PARSER_H
 #include <string>
 #include <vector>
 #include <map>
@@ -11,14 +11,12 @@
 #include "OpenServerCommand.h"
 using namespace std;
 
-class Interpeter {
+class Parser {
 map<string, Command> commands;
-
 public:
-    Interpeter();
-    vector<string> lexer(string info);
+    Parser();
     void parser(vector<string> info);
 };
 
 
-#endif //PROJECT1_INTERPETER_H
+#endif //PROJECT1_PARSER_H
