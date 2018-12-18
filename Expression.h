@@ -12,9 +12,10 @@ using namespace std;
 
 class Expression {
 public:
-    virtual double evaluate(map<string, double> assignment) = 0;
     virtual double evaluate() = 0;
-    virtual string toString() = 0;
+    virtual string toString() {
+        return "default string";
+    }
 };
 
 #endif //PROJECT1_EXPRESSION_H
