@@ -17,6 +17,7 @@ public:
     SymbolTable();
     map<string, double> getMap();
     void addVar(string varName, double varValue);
+    void setVarValue(string varName, double varValue);
     double getVarValue(string varName);
 };
 

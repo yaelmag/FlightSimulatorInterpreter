@@ -11,7 +11,7 @@ class OpenServerCommand : public Command {
 
 public:
     OpenServerCommand();
-    void doCommand(vector<string>);
+    int doCommand(vector<string> info, int index, SymbolTable* varsMap);
 };
 
 

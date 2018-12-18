@@ -6,6 +6,6 @@
 
 OpenServerCommand:: OpenServerCommand() = default;
 
-void OpenServerCommand:: doCommand(vector<string>) {
+int OpenServerCommand:: doCommand(vector<string> info, int index, SymbolTable* varsMap) {
 
 }

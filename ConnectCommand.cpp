@@ -6,6 +6,6 @@
 
 ConnectCommand::ConnectCommand() = default;
 
-void ConnectCommand:: doCommand(vector<string>) {
+int ConnectCommand:: doCommand(vector<string> info, int index, SymbolTable* varsMap) {
 
 }

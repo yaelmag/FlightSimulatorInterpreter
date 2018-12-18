@@ -4,10 +4,9 @@
 
 #include "VarCommand.h"
 
-VarCommand::VarCommand() {
-    this->varsMap = SymbolTable();
-};
+VarCommand::VarCommand() = default;
 
-void VarCommand:: doCommand(vector<string>) {
-
+int VarCommand:: doCommand(vector<string> info, int index, SymbolTable* varsMap) {
+    varsMap->addVar(info[index], 0);
+    return 1;
 }

@@ -11,6 +11,8 @@
 #include "OpenServerCommand.h"
 #include "ConnectCommand.h"
 #include "VarCommand.h"
+#include "EqualOperatorCommand.h"
+#include "Expression.h"
 using namespace std;
 
 class CommandsMap {

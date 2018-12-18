@@ -10,7 +10,7 @@ class ConnectCommand : public Command{
 
 public:
     ConnectCommand();
-    void doCommand(vector<string>);
+    int doCommand(vector<string> info, int index, SymbolTable* varsMap);
 };
 
 
