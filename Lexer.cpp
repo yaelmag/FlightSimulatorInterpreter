@@ -25,6 +25,7 @@ string Lexer:: fileToString() {
     // push all the script's line in one string
     while (getline(readFile, line)) {
         allScript += line;
+        allScript += " ";
         // push also '\n' so we knew when every line end
         allScript += '\n';
         allScript += " ";

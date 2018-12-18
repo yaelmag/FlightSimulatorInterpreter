@@ -8,7 +8,9 @@
 #include <vector>
 #include <map>
 #include "Command.h"
+#include "CommandsMap.h"
 #include "OpenServerCommand.h"
+#include "ConnectCommand.h"
 using namespace std;
 
 class Parser {

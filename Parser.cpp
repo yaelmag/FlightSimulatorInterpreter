@@ -5,6 +5,5 @@
 #include "Parser.h"
 
 Parser::Parser() {
-    OpenServerCommand* openDataServer = new OpenServerCommand();
-    commands["openDataServer"] = openDataServer;
+    commands = CommandsMap().getMap();
 }

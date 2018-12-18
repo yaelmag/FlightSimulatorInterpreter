@@ -3,4 +3,4 @@ project(project1)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(project1 main.cpp Command.h OpenServerCommand.cpp OpenServerCommand.h Lexer.cpp Lexer.h Parser.cpp Parser.h)
+add_executable(project1 main.cpp Command.h OpenServerCommand.cpp OpenServerCommand.h Lexer.cpp Lexer.h Parser.cpp Parser.h ConnectCommand.cpp ConnectCommand.h CommandsMap.cpp CommandsMap.h VarCommand.cpp VarCommand.h SymbolTable.cpp SymbolTable.h)

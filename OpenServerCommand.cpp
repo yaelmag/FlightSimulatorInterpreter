@@ -6,6 +6,6 @@
 
 OpenServerCommand:: OpenServerCommand() = default;
 
-void OpenServerCommand:: doCommand(string[]) {
+void OpenServerCommand:: doCommand(vector<string>) {
 
 }

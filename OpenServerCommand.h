@@ -10,8 +10,8 @@
 class OpenServerCommand : public Command {
 
 public:
-    void doCommand(string[]);
     OpenServerCommand();
+    void doCommand(vector<string>);
 };
 
 
