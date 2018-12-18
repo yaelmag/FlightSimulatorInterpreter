@@ -6,4 +6,5 @@ set(CMAKE_CXX_STANDARD 14)
 add_executable(project1 main.cpp CommandExpression.cpp CommandExpression.h Lexer.h Lexer.cpp
         CommandsMap.h CommandsMap.cpp EqualOperatorCommand.cpp EqualOperatorCommand.h
         ConnectCommand.h ConnectCommand.cpp Parser.h Parser.cpp OpenServerCommand.cpp
-        OpenServerCommand.h VarCommand.cpp VarCommand.h SymbolTable.cpp SymbolTable.h)
+        OpenServerCommand.h VarCommand.cpp VarCommand.h SymbolTable.cpp SymbolTable.h
+        Command.h)
