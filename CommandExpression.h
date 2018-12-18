@@ -9,11 +9,11 @@
 #include "Command.h"
 
 class CommandExpression : public Expression {
-
+/*
 Command* command;
 public:
     CommandExpression(Command* command);
-    virtual void calculate(vector<string> info) = 0;
+    virtual void calculate(vector<string> info) = 0;*/
 };
 
 

@@ -7,7 +7,7 @@
 #include "Command.h"
 
 
-class EqualOperatorCommand : Command{
+class EqualOperatorCommand : public Command{
 
 public:
     EqualOperatorCommand();

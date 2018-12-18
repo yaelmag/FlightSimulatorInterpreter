@@ -12,7 +12,7 @@ CommandsMap::CommandsMap() {
     VarCommand* var = new VarCommand();
     commands["var"] = var;
     EqualOperatorCommand* equal = new EqualOperatorCommand();
-    commands["="] = equal.
+    commands["="] = equal;
 }
 
 map<string, Command*> CommandsMap:: getMap() {

@@ -3,6 +3,7 @@
 //
 
 #include "CommandExpression.h"
+/*
 
 CommandExpression:: CommandExpression(Command *command) {
     this->command = command;
@@ -10,4 +11,4 @@ CommandExpression:: CommandExpression(Command *command) {
 
 void CommandExpression:: calculate(vector<string> info) {
     this->command->doCommand(info);
-}
+}*/
