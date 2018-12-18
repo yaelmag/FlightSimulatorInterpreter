@@ -9,5 +9,5 @@ VarCommand::VarCommand() {
 };
 
 void VarCommand:: doCommand(vector<string>) {
-    
+
 }
