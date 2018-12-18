@@ -13,6 +13,6 @@ using namespace std;
 class Command {
 
 public:
-    void doCommand(string[]);
+    virtual void doCommand(string[]) = 0;
 };
 #endif //PROJECT1_COMMAND_H

@@ -3,21 +3,32 @@
 #include "Lexer.h"
 using namespace std;
 int main() {
-    Lexer* l = new Lexer();
-    string s1 = "Var x = 2 + 3";
-    string s2 = "Var x=2+3";
+    Lexer* l = new Lexer("lol");
+    string s1 = "Var x =\n 2 + 3 127.0.0.1 5402";
+    string s2 = "Var x=2+3\n bind \"hello world\"";
     vector<string> v1 = l->splitScript(s1);
     vector<string> v2 = l->splitScript(s2);
     int count = 0;
     for(auto const& string1 : v1) {
         count++;
-        cout<<string1<<"~";
+        if (string1 == "\n") {
+            cout<<"\\n"<<endl;
+        } else {
+            cout<<string1<<endl;
+        }
     }
-    cout<<endl;
     cout<<count;
     cout<<endl;
+    cout<<endl;
+    count = 0;
     for(auto const& string1 : v2) {
-        cout<<string1<<"~";
+        count++;
+        if (string1 == "\n") {
+            cout<<"\\n"<<endl;
+        } else {
+            cout<<string1<<endl;
+        }
     }
+    cout<<count;
     return 0;
 }

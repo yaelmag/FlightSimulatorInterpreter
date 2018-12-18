@@ -4,6 +4,8 @@
 
 #include "OpenServerCommand.h"
 
-OpenServerCommand:: OpenServerCommand(){
+OpenServerCommand:: OpenServerCommand() = default;
+
+void OpenServerCommand:: doCommand(string[]) {
 
 }

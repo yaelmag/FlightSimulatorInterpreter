@@ -10,6 +10,7 @@
 class OpenServerCommand : public Command {
 
 public:
+    void doCommand(string[]);
     OpenServerCommand();
 };
 

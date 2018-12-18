@@ -12,7 +12,7 @@
 using namespace std;
 
 class Parser {
-map<string, Command> commands;
+map<string, Command*> commands;
 public:
     Parser();
     void parser(vector<string> info);

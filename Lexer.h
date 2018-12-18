@@ -9,9 +9,12 @@
 using namespace std;
 
 class Lexer {
+string file;
 
 public:
-    vector<string> splitScript(string info);
+    Lexer(const string &file);
+    string fileToString();
+    vector<string> splitScript(string script);
 };
 
 
