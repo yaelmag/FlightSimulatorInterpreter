@@ -14,6 +14,7 @@
 #include "EqualOperatorCommand.h"
 #include "Expression.h"
 #include "VarBindMap.h"
+#include "SymbolTable.h"
 
 using namespace std;
 

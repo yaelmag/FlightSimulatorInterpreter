@@ -4,8 +4,11 @@
 
 #include "OpenServerCommand.h"
 
-OpenServerCommand:: OpenServerCommand() = default;
+OpenServerCommand:: OpenServerCommand(SymbolTable* varsMap, VarBindMap* varBindMap) {
+    this->varsMap = varsMap;
+    this->varBindMap = varBindMap;
+}
 
-int OpenServerCommand:: doCommand(vector<string> info, int index, SymbolTable* varsMap) {
+int OpenServerCommand:: doCommand(vector<string> info, int index) {
 
 }

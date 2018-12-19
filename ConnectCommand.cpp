@@ -4,8 +4,11 @@
 
 #include "ConnectCommand.h"
 
-ConnectCommand::ConnectCommand() = default;
+ConnectCommand::ConnectCommand(SymbolTable* varsMap, VarBindMap* varBindMap) {
+    this->varsMap = varsMap;
+    this->varBindMap = varBindMap;
+}
 
-int ConnectCommand:: doCommand(vector<string> info, int index, SymbolTable* varsMap) {
+int ConnectCommand:: doCommand(vector<string> info, int index) {
 
 }

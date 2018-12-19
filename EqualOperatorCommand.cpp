@@ -4,11 +4,12 @@
 
 #include "EqualOperatorCommand.h"
 
-EqualOperatorCommand::EqualOperatorCommand() {
-    this->varBindMap = VarBindMap();
+EqualOperatorCommand::EqualOperatorCommand(SymbolTable* varsMap, VarBindMap* varBindMap) {
+    this->varsMap = varsMap;
+    this->varBindMap = varBindMap;
 }
 
-int EqualOperatorCommand:: doCommand(vector<string> info, int index, SymbolTable* varsMap) {
+int EqualOperatorCommand:: doCommand(vector<string> info, int index) {
     int count = 0;
 
     // if the var doesn't exist

@@ -17,8 +17,6 @@ using namespace std;
 
 class Parser {
 CommandsMap commands;
-VarBindMap varBindMap;
-SymbolTable varsMap;
 public:
     Parser();
     void parser(vector<string> info);

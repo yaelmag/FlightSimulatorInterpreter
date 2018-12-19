@@ -8,9 +8,10 @@
 #include "SymbolTable.h"
 
 class VarCommand : public Command {
+SymbolTable* varsMap;
 public:
-    VarCommand();
-    int doCommand(vector<string> info, int index, SymbolTable* varsMap);
+    VarCommand(SymbolTable* varsMap);
+    int doCommand(vector<string> info, int index);
 };
 
 

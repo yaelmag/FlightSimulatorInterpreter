@@ -6,13 +6,14 @@
 #define PROJECT1_EQUALOPERATORCOMMAND_H
 #include "Command.h"
 #include "VarBindMap.h"
-
+#include "SymbolTable.h"
 
 class EqualOperatorCommand : public Command{
-VarBindMap varBindMap;
+SymbolTable* varsMap;
+VarBindMap* varBindMap;
 public:
-    EqualOperatorCommand();
-    int doCommand(vector<string> info, int index, SymbolTable* varsMap);
+    EqualOperatorCommand(SymbolTable* varsMap, VarBindMap* varBindMap);
+    int doCommand(vector<string> info, int index);
     VarBindMap* getVarBindMap();
 };
 
