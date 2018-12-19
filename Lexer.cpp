@@ -58,7 +58,9 @@ vector<string> Lexer:: splitScript(string script) {
                 word = "";
               // if we saw '"' for the first time
             } else if (script[i] == '"') {
-                check++;
+                // add the '"'
+                word += script[i];
+                check = 1;
 
                 // jump over space or tab and add the current 'word'
             } else if ((script[i] == ' ') || (script[i] == '\t')) {
@@ -108,6 +110,8 @@ vector<string> Lexer:: splitScript(string script) {
         } else if (check == 1) {
             if (script[i] == '"') {
                 check = 0;
+                // add the '"'
+                word += script[i];
                 // add the current word (a bind)
                 splitScript.push_back(word);
                 // reset the word

@@ -11,10 +11,13 @@
 #include "CommandsMap.h"
 #include "OpenServerCommand.h"
 #include "ConnectCommand.h"
+#include "VarBindMap.h"
+
 using namespace std;
 
 class Parser {
-map<string, Command*> commands;
+CommandsMap commands;
+VarBindMap varBindMap;
 SymbolTable varsMap;
 public:
     Parser();

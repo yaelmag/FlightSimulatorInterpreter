@@ -1,11 +1,12 @@
 #include <iostream>
 #include <string>
 #include "Expression.h"
+#include "Lexer.h"
 #include "Plus.h"
 #include "Num.cpp"
 using namespace std;
 int main() {
-    /*
+
     Lexer* l = new Lexer("lol");
     string s1 = "Var x =\n 2 + 3 127.0.0.1 5402";
     string s2 = "Var x=2+3\n bind \"hello world\"";
@@ -33,9 +34,12 @@ int main() {
         }
     }
     cout<<count;
-     */
+
     /*Expression* e = new Plus(*(new Num(5)), *(new Plus(*(new Num(7)), *(new Num(10)))));
     e->evaluate();
     cout << e->toString();*/
-    return 0;
+/*
+    double d = stod("1.2");
+    cout <<d<<endl;
+    return 0;*/
 }
