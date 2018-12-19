@@ -2,7 +2,11 @@
 #include <string>
 #include "Expression.h"
 #include "Plus.h"
-#include "Num.cpp"
+#include "Minus.h"
+#include "Div.h"
+#include "Mult.h"
+#include "Num.h"
+#include "ShuntingYard.h"
 using namespace std;
 int main() {
     /*
@@ -34,8 +38,9 @@ int main() {
     }
     cout<<count;
      */
-    Expression* e = new Plus(*(new Num(5)), *(new Plus(*(new Num(7)), *(new Num(10)))));
-    e->evaluate();
-    cout << e->toString();
+    Expression* e = new Plus(*(new Num(5)), *(new Mult(*(new Num(7)), *(new Num(0)))));
+    cout << e->toString() << endl;
+    ShuntingYard s;
+    s.shuntYard();
     return 0;
 }

@@ -1,6 +1,10 @@
 //
-// Created by yael on 12/18/18.
+// Created by yael on 12/19/18.
 //
+
+#ifndef PROJECT1_NUM_H
+#define PROJECT1_NUM_H
+
 #include "Expression.h"
 #include "map"
 #include "list"
@@ -35,3 +39,5 @@ public:
         return to_string(this->num);
     }
 };
+
+#endif //PROJECT1_NUM_H

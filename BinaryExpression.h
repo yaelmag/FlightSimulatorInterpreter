@@ -8,9 +8,15 @@
 #include "Expression.h"
 
 class BinaryExpression : public Expression {
+protected:
+    Expression &leftE;
+    Expression &rightE;
 
 public:
-    virtual double evaluate() override = 0;
+    BinaryExpression(Expression &left, Expression &right) : leftE(left), rightE(right) {
+        this->leftE = left;
+        this->rightE = right;
+    }
     virtual string toString() {
         return to_string(this->evaluate());
     }

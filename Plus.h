@@ -8,11 +8,12 @@
 #include "BinaryExpression.h"
 
 class Plus : public BinaryExpression{
-    Expression& left;
-    Expression& right;
 
 public:
-    Plus(Expression &leftE, Expression &rightE);
+    Plus(Expression &leftE, Expression &rightE) : BinaryExpression(leftE, rightE) {
+        this->leftE = leftE;
+        this->rightE = rightE;
+    }
 
     double evaluate() override;
 

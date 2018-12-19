@@ -4,15 +4,10 @@
 
 #include "Minus.h"
 
-Minus::Minus(Expression &leftE, Expression &rightE) : left(leftE), right(rightE) {
-    this->left = leftE;
-    this->right = rightE;
-}
-
 double Minus::evaluate() {
-    return this->left.evaluate() - this->right.evaluate();
+    return this->leftE.evaluate() - this->rightE.evaluate();
 }
 
 string Minus::toString() {
-    BinaryExpression::toString();
+    return BinaryExpression::toString();
 }
