@@ -21,11 +21,11 @@ int EqualOperatorCommand:: doCommand(vector<string> info, int index) {
     if (info[index + 2] == "bind" && info[index + 4] == "\n") {
         if (info[index + 3][0] == '"') {
             // update the bind of the var in the varBindMap
-            varBindMap.addVarBind(info[index], info[index + 3]);
+            this->varBindMap->addVarBind(info[index], info[index + 3]);
         } else {
-            string bind = varBindMap.getVarBind(info[index + 3]);
+            string bind = this->varBindMap->getVarBind(info[index + 3]);
             // update the bind of the var in the varBindMap
-            varBindMap.addVarBind(info[index], bind);
+            this->varBindMap->addVarBind(info[index], bind);
         }
 
         //todo
@@ -44,7 +44,7 @@ int EqualOperatorCommand:: doCommand(vector<string> info, int index) {
             }
             // if the var before the "=" is connected to the simulator,
             // sent to the simulator the new value
-            if (varBindMap.getMap().count(info[index]) == 1) {
+            if (this->varBindMap->getMap().count(info[index]) == 1) {
                 //todo
                 //לעדכן את הסימולטור עם הערך החדש
             }
@@ -69,5 +69,5 @@ int EqualOperatorCommand:: doCommand(vector<string> info, int index) {
 }
 
 VarBindMap* EqualOperatorCommand:: getVarBindMap() {
-    return &this->varBindMap;
+    return this->varBindMap;
 }

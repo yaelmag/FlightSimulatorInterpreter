@@ -12,7 +12,7 @@ CommandsMap::CommandsMap() {
     commands["openDataServer"] = openDataServer;
     ConnectCommand* connect = new ConnectCommand(&varsMap, &varBindMap);
     commands["connect"] = connect;
-    VarCommand* var = new VarCommand(&varsMap);
+    DefineVarCommand* var = new DefineVarCommand(&varsMap);
     commands["var"] = var;
     EqualOperatorCommand* equal = new EqualOperatorCommand(&varsMap, &varBindMap);
     commands["="] = equal;

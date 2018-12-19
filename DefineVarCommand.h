@@ -7,10 +7,10 @@
 #include "Command.h"
 #include "SymbolTable.h"
 
-class VarCommand : public Command {
+class DefineVarCommand : public Command {
 SymbolTable* varsMap;
 public:
-    VarCommand(SymbolTable* varsMap);
+    DefineVarCommand(SymbolTable* varsMap);
     int doCommand(vector<string> info, int index);
 };
 
