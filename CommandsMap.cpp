@@ -5,12 +5,17 @@
 #include "CommandsMap.h"
 
 CommandsMap::CommandsMap() {
-    OpenServerCommand* openDataServer = new OpenServerCommand();
+    VarBindMap varBindMap = VarBindMap();
+    SymbolTable varsMap = SymbolTable();
+
+    OpenServerCommand* openDataServer = new OpenServerCommand(&varsMap, &varBindMap);
     commands["openDataServer"] = openDataServer;
-    ConnectCommand* connect = new ConnectCommand();
+    ConnectCommand* connect = new ConnectCommand(&varsMap, &varBindMap);
     commands["connect"] = connect;
-    VarCommand* var = new VarCommand();
+    DefineVarCommand* var = new DefineVarCommand(&varsMap);
     commands["var"] = var;
+    EqualOperatorCommand* equal = new EqualOperatorCommand(&varsMap, &varBindMap);
+    commands["="] = equal;
 }
 
 map<string, Command*> CommandsMap:: getMap() {

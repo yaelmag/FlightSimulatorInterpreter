@@ -10,7 +10,12 @@
 #include "Command.h"
 #include "OpenServerCommand.h"
 #include "ConnectCommand.h"
-#include "VarCommand.h"
+#include "DefineVarCommand.h"
+#include "EqualOperatorCommand.h"
+#include "Expression.h"
+#include "VarBindMap.h"
+#include "SymbolTable.h"
+
 using namespace std;
 
 class CommandsMap {

@@ -23,6 +23,10 @@ void SymbolTable:: addVar(string varName, double varValue) {
     symbolTable[varName] = varValue;
 }
 
+void SymbolTable:: setVarValue(string varName, double varValue) {
+    symbolTable[varName] = varValue;
+}
+
 /**
  * get the value of specific var from the symbol table
  * @param varName - the name of the var we want to get his value

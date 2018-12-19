@@ -1,7 +1,10 @@
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.12.3)
 project(project1)
 
 set(CMAKE_CXX_STANDARD 14)
-find_package(Threads)
-add_executable(project1 main.cpp Plus.cpp Plus.h Minus.cpp Minus.h Mult.cpp Mult.h Div.cpp Div.h ShuntingYard.cpp Num.h ShuntingYard.h OpenServerCommand.h OpenServerCommand.cpp)
-target_link_libraries(project1 ${CMAKE_THREAD_LIBS_INIT})
+
+add_executable(project1 main.cpp CommandExpression.cpp CommandExpression.h Lexer.h Lexer.cpp
+        CommandsMap.h CommandsMap.cpp EqualOperatorCommand.cpp EqualOperatorCommand.h
+        ConnectCommand.h ConnectCommand.cpp Parser.h Parser.cpp OpenServerCommand.cpp
+        OpenServerCommand.h DefineVarCommand.cpp DefineVarCommand.h SymbolTable.cpp SymbolTable.h
+        Command.h VarBindMap.cpp VarBindMap.h)

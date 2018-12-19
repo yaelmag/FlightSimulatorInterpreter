@@ -6,12 +6,16 @@
 #define PROJECT1_OPENSERVERCOMMAND_H
 
 #include "Command.h"
+#include "VarBindMap.h"
+#include "SymbolTable.h"
 
 class OpenServerCommand : public Command {
+SymbolTable* varsMap;
+VarBindMap* varBindMap;
 
 public:
-    OpenServerCommand();
-    void doCommand(vector<string>);
+    OpenServerCommand(SymbolTable* varsMap, VarBindMap* varBindMap);
+    int doCommand(vector<string> info, int index);
 };
 
 
