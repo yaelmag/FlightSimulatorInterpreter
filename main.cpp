@@ -3,7 +3,7 @@
 #include "Expression.h"
 #include "Lexer.h"
 #include "Plus.h"
-#include "Num.cpp"
+#include "Num.h"
 using namespace std;
 int main() {
 
