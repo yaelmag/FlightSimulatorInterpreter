@@ -4,7 +4,7 @@
 
 #include "EqualOperatorCommand.h"
 
-EqualOperatorCommand::EqualOperatorCommand(SymbolTable* varsMap, VarBindMap* varBindMap) {
+EqualOperatorCommand::EqualOperatorCommand(SymbolTable &varsMap, VarBindMap &varBindMap) {
     this->varsMap = varsMap;
     this->varBindMap = varBindMap;
 }
@@ -13,7 +13,7 @@ int EqualOperatorCommand:: doCommand(vector<string> info, int index) {
     int count = 0;
 
     // if the var doesn't exist
-    if (varsMap->getMap().count(info[index]) == 0) {
+    if (varsMap.getMap().count(info[index]) == 0) {
         __throw_invalid_argument("The var doesn't exist in the map");
     }
 
@@ -21,11 +21,11 @@ int EqualOperatorCommand:: doCommand(vector<string> info, int index) {
     if (info[index + 2] == "bind" && info[index + 4] == "\n") {
         if (info[index + 3][0] == '"') {
             // update the bind of the var in the varBindMap
-            this->varBindMap->addVarBind(info[index], info[index + 3]);
+            this->varBindMap.addVarBind(info[index], info[index + 3]);
         } else {
-            string bind = this->varBindMap->getVarBind(info[index + 3]);
+            string bind = this->varBindMap.getVarBind(info[index + 3]);
             // update the bind of the var in the varBindMap
-            this->varBindMap->addVarBind(info[index], bind);
+            this->varBindMap.addVarBind(info[index], bind);
         }
 
         //todo
@@ -37,19 +37,19 @@ int EqualOperatorCommand:: doCommand(vector<string> info, int index) {
         if (info[index + 3] == "\n") {
             double value;
             // if the argument is var, take his value from the SymbolTable map
-            if (varsMap->getMap().count(info[index + 3]) != 0) {
-                value = varsMap->getVarValue(info[index + 2]);
+            if (varsMap.getMap().count(info[index + 3]) != 0) {
+                value = varsMap.getVarValue(info[index + 2]);
             } else {
                 value = stod(info[index + 2]);
             }
             // if the var before the "=" is connected to the simulator,
             // sent to the simulator the new value
-            if (this->varBindMap->getMap().count(info[index]) == 1) {
+            if (this->varBindMap.getMap().count(info[index]) == 1) {
                 //todo
                 //לעדכן את הסימולטור עם הערך החדש
             }
             // update the other var with this new value (in the SymbolTable map)
-            varsMap->setVarValue(info[index],value);
+            varsMap.setVarValue(info[index],value);
             count = 4;
           // if the argument is expression
         } else {
@@ -68,6 +68,6 @@ int EqualOperatorCommand:: doCommand(vector<string> info, int index) {
     return count;
 }
 
-VarBindMap* EqualOperatorCommand:: getVarBindMap() {
+VarBindMap EqualOperatorCommand:: getVarBindMap() {
     return this->varBindMap;
 }

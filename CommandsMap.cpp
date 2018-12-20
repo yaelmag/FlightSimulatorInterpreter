@@ -8,13 +8,13 @@ CommandsMap::CommandsMap() {
     VarBindMap varBindMap = VarBindMap();
     SymbolTable varsMap = SymbolTable();
 
-    OpenServerCommand* openDataServer = new OpenServerCommand(&varsMap, &varBindMap);
+    OpenServerCommand* openDataServer = new OpenServerCommand(varsMap, varBindMap);
     commands["openDataServer"] = openDataServer;
-    ConnectCommand* connect = new ConnectCommand(&varsMap, &varBindMap);
+    ConnectCommand* connect = new ConnectCommand(varsMap, varBindMap);
     commands["connect"] = connect;
-    DefineVarCommand* var = new DefineVarCommand(&varsMap);
+    DefineVarCommand* var = new DefineVarCommand(varsMap);
     commands["var"] = var;
-    EqualOperatorCommand* equal = new EqualOperatorCommand(&varsMap, &varBindMap);
+    EqualOperatorCommand* equal = new EqualOperatorCommand(varsMap, varBindMap);
     commands["="] = equal;
     //BindCommand* = bind = new BindCommand
 }

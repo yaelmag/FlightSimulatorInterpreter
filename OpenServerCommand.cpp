@@ -11,7 +11,7 @@
 #include <string.h>
 #include <sys/socket.h>
 
-OpenServerCommand:: OpenServerCommand(SymbolTable* varsMap, VarBindMap* varBindMap) {
+OpenServerCommand:: OpenServerCommand(SymbolTable &varsMap, VarBindMap &varBindMap) {
     this->varsMap = varsMap;
     this->varBindMap = varBindMap;
 }

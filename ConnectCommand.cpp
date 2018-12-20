@@ -4,7 +4,7 @@
 
 #include "ConnectCommand.h"
 
-ConnectCommand::ConnectCommand(SymbolTable* varsMap, VarBindMap* varBindMap) {
+ConnectCommand::ConnectCommand(SymbolTable &varsMap, VarBindMap &varBindMap) {
     this->varsMap = varsMap;
     this->varBindMap = varBindMap;
 }
