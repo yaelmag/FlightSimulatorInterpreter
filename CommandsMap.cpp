@@ -16,6 +16,7 @@ CommandsMap::CommandsMap() {
     commands["var"] = var;
     EqualOperatorCommand* equal = new EqualOperatorCommand(&varsMap, &varBindMap);
     commands["="] = equal;
+    //BindCommand* = bind = new BindCommand
 }
 
 map<string, Command*> CommandsMap:: getMap() {
