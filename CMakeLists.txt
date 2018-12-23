@@ -10,4 +10,6 @@ add_executable(project1 main.cpp Lexer.h Lexer.cpp PrintCommand.cpp PrintCommand
         OpenServerCommand.h DefineVarCommand.cpp DefineVarCommand.h SymbolTable.cpp SymbolTable.h
         Command.h VarBindMap.cpp VarBindMap.h DataReaderServer.cpp DataReaderServer.h Server.cpp Server.h
         BooleanExpression.cpp BooleanExpression.h GreaterEqual.cpp GreaterEqual.h Equal.cpp Equal.h NotEqual.cpp
-        NotEqual.h ShuntingYard.cpp ShuntingYard.h SmallerEqual.cpp SmallerEqual.h Greater.cpp Greater.h Smaller.cpp Smaller.h)
+        NotEqual.h ShuntingYard.cpp ShuntingYard.h SmallerEqual.cpp SmallerEqual.h Greater.cpp Greater.h
+        Smaller.cpp Smaller.h CheckExpressions.cpp CheckExpressions.h ConditionParser.cpp ConditionParser.h
+        Plus.h Plus.cpp Minus.h Minus.cpp Div.h Div.cpp Mult.h Mult.cpp)

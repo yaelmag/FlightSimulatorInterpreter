@@ -7,10 +7,10 @@
 
 #include "BooleanExpression.h"
 
-class SmallerEqual : public BooleanExpression {
+class GreaterEqual : public BooleanExpression {
 
 public:
-    SmallerEqual(Expression& leftExp, Expression& rightExp) : BooleanExpression(leftExp, rightExp) {
+    GreaterEqual(Expression& leftExp, Expression& rightExp) : BooleanExpression(leftExp, rightExp) {
     }
 
     string toString() override;

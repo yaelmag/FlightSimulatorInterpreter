@@ -4,10 +4,10 @@
 
 #include "GreaterEqual.h"
 
-string SmallerEqual::toString() {
+string GreaterEqual::toString() {
     return (leftE.toString() + ">=" + rightE.toString());
 }
 
-double SmallerEqual::evaluate() {
+double GreaterEqual::evaluate() {
     return (leftE.evaluate() >= rightE.evaluate());
 }
