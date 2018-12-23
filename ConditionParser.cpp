@@ -4,7 +4,9 @@
 
 #include "ConditionParser.h"
 
-ConditionParser:: ConditionParser(string booleanExpression, CommandsMap &commands) {
+ConditionParser:: ConditionParser(vector<string> boolExp, CommandsMap &commands) {
+    if (boolExp[1] == "")
+
     this->booleanExpression = booleanExpression;
     this->commands = commands;
 }

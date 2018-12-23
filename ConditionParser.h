@@ -7,13 +7,15 @@
 
 #include "Command.h"
 #include "CommandsMap.h"
+#include "BooleanExpression"
+
 
 class ConditionParser : public Command{
-string booleanExpression;
+BooleanExpression booleanExpression;
 CommandsMap commands;
 
 public:
-    ConditionParser(string booleanExpression, CommandsMap &commands);
+    ConditionParser(vector<string> boolExp, CommandsMap &commands);
     int virtual doCommand(vector<string> info, int index) = 0;
 };
 
