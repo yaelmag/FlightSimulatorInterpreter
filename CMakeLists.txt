@@ -8,5 +8,6 @@ add_executable(project1 main.cpp Lexer.h Lexer.cpp
         CommandsMap.h CommandsMap.cpp EqualOperatorCommand.cpp EqualOperatorCommand.h
         ConnectCommand.h ConnectCommand.cpp Parser.h Parser.cpp OpenServerCommand.cpp
         OpenServerCommand.h DefineVarCommand.cpp DefineVarCommand.h SymbolTable.cpp SymbolTable.h
-        Command.h VarBindMap.cpp VarBindMap.h DataReaderServer.cpp DataReaderServer.h Server.cpp Server.h
-        PrintCommand.h PrintCommand.cpp SleepCommand.cpp SleepCommand.h CheckExpressions.cpp CheckExpressions.h)
+        Command.h VarBindMap.cpp VarBindMap.h Server.cpp DataReaderServer.cpp DataReaderServer.h
+        Server.h PrintCommand.h PrintCommand.cpp SleepCommand.cpp SleepCommand.h
+        CheckExpressions.cpp CheckExpressions.h ConditionParser.h ConditionParser.cpp)
