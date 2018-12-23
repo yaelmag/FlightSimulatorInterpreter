@@ -23,16 +23,14 @@ int SleepCommand:: doCommand(vector<string> info, int index) {
             value = stoi(info[index]);
         }
     } else {
-        //todo
-        //להעביר את הפונקציה של תקינות ביטוי לתוך הקלאס שיעלי עשתה
-        vector<string> exp = getExpressions(info, index);
+        CheckExpressions check = CheckExpressions(varsMap);
+        vector<string> exp = check.getExpressions(info, index);
         if (exp.size() != 1) {
             __throw_invalid_argument("There are too many arguments");
         }
         count = 2 + exp[0].length();
-        //todo
-        //לקרוא למה שיעלי עשתה כדי לפרש את הביטוי
-        int num = (int)0;
+        ShuntingYard s;
+        value = (int)s.evaluate(exp[0]).evaluate();
     }
     sleep(value);
     return count;

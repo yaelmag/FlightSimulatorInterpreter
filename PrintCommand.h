@@ -13,9 +13,6 @@ SymbolTable varsMap;
 public:
     PrintCommand(SymbolTable &varsMap);
     int doCommand(vector<string> info, int index);
-    vector<string> getExpressions(vector<string> info, int index);
-    string getNumber(SymbolTable map, string num);
-    bool checkOperator(string s1, string s2);
 };
 
 
