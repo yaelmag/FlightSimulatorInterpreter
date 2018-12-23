@@ -15,7 +15,7 @@ void Parser:: parser(vector<string> info) {
         if (c != nullptr) {
             index += c->doCommand(info, index + 1);
         } else if (info[index] == "while") {
-            c = Loop
+            //c = Loop
         } else if (info[index + 1] == "=") {
             c = commands.getMap().find(info[index + 1])->second;
             index += c->doCommand(info, index);
