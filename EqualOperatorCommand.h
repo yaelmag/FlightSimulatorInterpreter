@@ -9,12 +9,12 @@
 #include "SymbolTable.h"
 
 class EqualOperatorCommand : public Command{
-SymbolTable* varsMap;
-VarBindMap* varBindMap;
+SymbolTable varsMap;
+VarBindMap varBindMap;
 public:
-    EqualOperatorCommand(SymbolTable* varsMap, VarBindMap* varBindMap);
+    EqualOperatorCommand(SymbolTable &varsMap, VarBindMap &varBindMap);
     int doCommand(vector<string> info, int index);
-    VarBindMap* getVarBindMap();
+    VarBindMap getVarBindMap();
 };
 
 

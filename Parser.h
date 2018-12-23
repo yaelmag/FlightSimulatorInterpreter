@@ -18,7 +18,7 @@ using namespace std;
 class Parser {
 CommandsMap commands;
 public:
-    Parser();
+    Parser(CommandsMap &commands);
     void parser(vector<string> info);
 };
 

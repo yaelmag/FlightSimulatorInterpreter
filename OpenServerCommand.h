@@ -10,11 +10,11 @@
 #include "SymbolTable.h"
 
 class OpenServerCommand : public Command {
-SymbolTable* varsMap;
-VarBindMap* varBindMap;
+SymbolTable varsMap;
+VarBindMap varBindMap;
 
 public:
-    OpenServerCommand(SymbolTable* varsMap, VarBindMap* varBindMap);
+    OpenServerCommand(SymbolTable &varsMap, VarBindMap &varBindMap);
     int doCommand(vector<string> info, int index);
 };
 
