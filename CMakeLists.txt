@@ -4,8 +4,10 @@ project(project1)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS -pthread)
 
-add_executable(project1 main.cpp Lexer.h Lexer.cpp
+add_executable(project1 main.cpp Lexer.h Lexer.cpp PrintCommand.cpp PrintCommand.h SleepCommand.cpp SleepCommand.h
         CommandsMap.h CommandsMap.cpp EqualOperatorCommand.cpp EqualOperatorCommand.h
         ConnectCommand.h ConnectCommand.cpp Parser.h Parser.cpp OpenServerCommand.cpp
         OpenServerCommand.h DefineVarCommand.cpp DefineVarCommand.h SymbolTable.cpp SymbolTable.h
-        Command.h VarBindMap.cpp VarBindMap.h DataReaderServer.cpp DataReaderServer.h Server.cpp Server.h)
+        Command.h VarBindMap.cpp VarBindMap.h DataReaderServer.cpp DataReaderServer.h Server.cpp Server.h
+        BooleanExpression.cpp BooleanExpression.h GreaterEqual.cpp GreaterEqual.h Equal.cpp Equal.h NotEqual.cpp
+        NotEqual.h ShuntingYard.cpp ShuntingYard.h SmallerEqual.cpp SmallerEqual.h Greater.cpp Greater.h Smaller.cpp Smaller.h)

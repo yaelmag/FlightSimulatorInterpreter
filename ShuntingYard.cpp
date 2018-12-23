@@ -150,10 +150,3 @@ Expression& ShuntingYard::evaluate(string tokens){
     // Top of 'values' contains result, return it.
     return *(new Num(values.top()));
 }
-
-void ShuntingYard::shuntYard() {
-    cout << evaluate("5* -3").toString() << "\n";
-    cout << evaluate("-10 + -2* 6").toString() << "\n";
-    cout << evaluate("100 * (2 + 12 )").toString() << "\n";
-    cout << evaluate("100 * ( 2 + 12 ) / 14").toString();
-}
