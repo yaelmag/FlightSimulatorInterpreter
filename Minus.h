@@ -7,12 +7,13 @@
 
 #include "BinaryExpression.h"
 
-class Minus : BinaryExpression{
-    Expression& left;
-    Expression& right;
+class Minus : public BinaryExpression{
 
 public:
-    Minus(Expression &leftE, Expression &rightE);
+    Minus(Expression &leftE, Expression &rightE) : BinaryExpression(leftE, rightE) {
+        this->leftE = leftE;
+        this->rightE = rightE;
+    }
 
     double evaluate() override;
 

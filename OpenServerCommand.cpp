@@ -1,8 +1,6 @@
 //
 // Created by adi on 17/12/18.
 //
-
-#include "OpenServerCommand.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <netdb.h>
@@ -10,18 +8,18 @@
 #include <netinet/in.h>
 #include <string.h>
 #include <sys/socket.h>
+#include "OpenServerCommand.h"
 
-OpenServerCommand:: OpenServerCommand(SymbolTable &varsMap, VarBindMap &varBindMap) {
+OpenServerCommand::OpenServerCommand(SymbolTable *varsMap, VarBindMap *varBindMap) {
     this->varsMap = varsMap;
     this->varBindMap = varBindMap;
 }
 
-int OpenServerCommand:: doCommand(vector<string> info, int index) {
+int OpenServerCommand::doCommand(vector<string> info, int index) {
     int sockfd, newsockfd, portno, clilen;
     char buffer[256];
     struct sockaddr_in serv_addr, cli_addr;
-    int  n;
-    portno = stoi(info[0]);
+    int n;
 
     /* First call to socket() function */
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -33,7 +31,7 @@ int OpenServerCommand:: doCommand(vector<string> info, int index) {
 
     /* Initialize socket structure */
     bzero((char *) &serv_addr, sizeof(serv_addr));
-    //portno = 5001;
+    portno = 5001;
 
     serv_addr.sin_family = AF_INET;
     serv_addr.sin_addr.s_addr = INADDR_ANY;
@@ -49,34 +47,35 @@ int OpenServerCommand:: doCommand(vector<string> info, int index) {
        * go in sleep mode and will wait for the incoming connection
     */
 
-    listen(sockfd,5);
+    listen(sockfd, 5);
     clilen = sizeof(cli_addr);
 
     /* Accept actual connection from the client */
-    newsockfd = accept(sockfd, (struct sockaddr *)&cli_addr, (socklen_t*)&clilen);
+    newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, (socklen_t *) &clilen);
 
     if (newsockfd < 0) {
         perror("ERROR on accept");
         exit(1);
     }
 
-    /* If connection is established then start communicating *//*
-    bzero(buffer,256);
-    n = read(newsockfd,buffer,255 );
+    /* If connection is established then start communicating */
+    bzero(buffer, 256);
+    n = read(newsockfd, buffer, 255);
 
     if (n < 0) {
         perror("ERROR reading from socket");
         exit(1);
-    }*/
+    }
 
-    printf("Here is the message: %s\n",buffer);
+    printf("Here is the message: %s\n", buffer);
 
-    /* Write a response to the client *//*
-    n = write(newsockfd,"I got your message",18);
+    /* Write a response to the client */
+    n = write(newsockfd, "I got your message", 18);
 
     if (n < 0) {
         perror("ERROR writing to socket");
         exit(1);
-    }*/
+    }
 
+    return 0;
 }
