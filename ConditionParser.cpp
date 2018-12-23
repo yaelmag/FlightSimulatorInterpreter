@@ -3,7 +3,7 @@
 //
 
 #include "ConditionParser.h"
-
+//> < <= >= == !=
 ConditionParser:: ConditionParser(vector<string> boolExp, CommandsMap &commands) {
     if (boolExp[1] == "")
 
