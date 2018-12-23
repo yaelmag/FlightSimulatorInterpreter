@@ -28,9 +28,8 @@ int SleepCommand:: doCommand(vector<string> info, int index) {
             __throw_invalid_argument("There are too many arguments");
         }
         count = 2 + exp[0].length();
-        //todo
-        //לקרוא למה שיעלי עשתה כדי לפרש את הביטוי
-        int num = (int)0;
+        ShuntingYard s;
+        value = (int)s.evaluate(exp[0]).evaluate();
     }
     sleep(value);
     return count;

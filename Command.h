@@ -8,6 +8,7 @@
 #include <string>
 #include <vector>
 #include "CheckExpressions.h"
+#include "ShuntingYard.h"
 
 using namespace std;
 
