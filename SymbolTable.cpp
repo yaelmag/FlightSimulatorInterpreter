@@ -4,7 +4,9 @@
 
 #include "SymbolTable.h"
 
-SymbolTable:: SymbolTable() = default;
+SymbolTable:: SymbolTable() {
+    this->symbolTable = map<string, double>();
+}
 
 /**
  * get the symbol table map
