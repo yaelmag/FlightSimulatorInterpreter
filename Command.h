@@ -7,6 +7,7 @@
 
 #include <string>
 #include <vector>
+#include "CheckExpressions.h"
 
 using namespace std;
 
