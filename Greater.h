@@ -9,7 +9,7 @@
 
 class Greater : public BooleanExpression {
 public:
-    Greater(Expression& leftExp, Expression& rightExp) : BooleanExpression(leftExp, rightExp) {
+    Greater(Expression* leftExp, Expression* rightExp) : BooleanExpression(leftExp, rightExp) {
     }
 
     string toString() override;

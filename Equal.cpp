@@ -6,9 +6,9 @@
 
 
 string Equal::toString() {
-    return leftE.toString() + "==" + rightE.toString();
+    return leftE->toString() + "==" + rightE->toString();
 }
 
 double Equal::evaluate() {
-    return (leftE.evaluate() == rightE.evaluate());
+    return (leftE->evaluate() == rightE->evaluate());
 }

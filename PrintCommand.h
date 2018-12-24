@@ -8,10 +8,10 @@
 #include "Command.h"
 
 class PrintCommand : public Command {
-SymbolTable varsMap;
+SymbolTable *varsMap;
 
 public:
-    PrintCommand(SymbolTable &varsMap);
+    PrintCommand(SymbolTable *varsMap);
     int doCommand(vector<string> info, int index);
 };
 

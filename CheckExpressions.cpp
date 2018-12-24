@@ -4,7 +4,7 @@
 
 #include "CheckExpressions.h"
 
-CheckExpressions:: CheckExpressions(SymbolTable &varsMap) {
+CheckExpressions:: CheckExpressions(SymbolTable *varsMap) {
     this->varsMap = varsMap;
 }
 
@@ -20,7 +20,7 @@ vector<string> CheckExpressions:: getExpressions(vector<string> info, int index)
             (info[index + i] != "/") && (info[index + i] != "*") && (info[index + i] != "(") &&
             (info[index + i] != ")")) {
 
-            num = getNumber(varsMap, info[index + i]);
+            num = getNumber(info[index + i]);
             // before the number was operator
             if (flag == 0) {
                 if (info[index + i - 1] == ")") {
@@ -72,9 +72,9 @@ vector<string> CheckExpressions:: getExpressions(vector<string> info, int index)
     return expressions;
 }
 
-string CheckExpressions:: getNumber(SymbolTable map, string num) {
-    if (map.getMap().count(num) == 1) {
-        return to_string(map.getVarValue(num));
+string CheckExpressions:: getNumber(string num) {
+    if (varsMap->getMap().count(num) == 1) {
+        return to_string(varsMap->getVarValue(num));
     }
     return num;
 }

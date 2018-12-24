@@ -9,11 +9,10 @@
 
 class Smaller : public BooleanExpression {
 public:
-    Smaller(Expression& leftExp, Expression& rightExp) : BooleanExpression(leftExp, rightExp) {
+    Smaller(Expression* leftExp, Expression* rightExp) : BooleanExpression(leftExp, rightExp) {
     }
 
     string toString() override;
-
 
     double evaluate() override;
 };

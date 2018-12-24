@@ -9,10 +9,10 @@
 #include "SymbolTable.h"
 
 class ConnectCommand : public Command{
-SymbolTable varsMap;
-VarBindMap varBindMap;
+SymbolTable *varsMap;
+VarBindMap *varBindMap;
 public:
-    ConnectCommand(SymbolTable &varsMap, VarBindMap &varBindMap);
+    ConnectCommand(SymbolTable *varsMap, VarBindMap *varBindMap);
     int doCommand(vector<string> info, int index);
 };
 

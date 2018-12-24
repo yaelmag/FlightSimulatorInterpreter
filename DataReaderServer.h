@@ -15,7 +15,7 @@ class DataReaderServer {
     VarBindMap bindMap;
     Server* server;
 public:
-    DataReaderServer(int port, SymbolTable & symbolTable, VarBindMap & bindMap);
+    DataReaderServer(int port, SymbolTable* symbolTable, VarBindMap* bindMap);
     void readFromClient();
     void setPort(int p);
 };

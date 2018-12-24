@@ -5,9 +5,9 @@
 #include "SmallerEqual.h"
 
 string SmallerEqual::toString() {
-    return (leftE.toString() + "<=" + rightE.toString());
+    return (leftE->toString() + "<=" + rightE->toString());
 }
 
 double SmallerEqual::evaluate() {
-    return (leftE.evaluate() <= rightE.evaluate());
+    return (leftE->evaluate() <= rightE->evaluate());
 }

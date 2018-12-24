@@ -5,7 +5,7 @@
 #include "PrintCommand.h"
 #include <iostream>
 
-PrintCommand:: PrintCommand(SymbolTable &varsMap) {
+PrintCommand:: PrintCommand(SymbolTable *varsMap) {
     this->varsMap = varsMap;
 }
 
@@ -15,8 +15,8 @@ int PrintCommand:: doCommand(vector<string> info, int index) {
         count = 3;
         double value;
         // if the var in the map
-        if (varsMap.getMap().count(info[index]) != 0) {
-            value = varsMap.getVarValue(info[index]);
+        if (varsMap->getMap().count(info[index]) != 0) {
+            value = varsMap->getVarValue(info[index]);
             cout<<value<<endl;
           // if this is a string
         } else if (info[index].at(0) == '"') {

@@ -6,7 +6,7 @@
 #include "PrintCommand.h"
 #include <unistd.h>
 
-SleepCommand:: SleepCommand(SymbolTable &varsMap) {
+SleepCommand:: SleepCommand(SymbolTable *varsMap) {
     this->varsMap = varsMap;
 }
 
@@ -16,8 +16,8 @@ int SleepCommand:: doCommand(vector<string> info, int index) {
     if (info[index + 1] == "\n") {
         count = 3;
         // if the var in the map
-        if (varsMap.getMap().count(info[index]) != 0) {
-            value = (int)varsMap.getVarValue(info[index]);
+        if (varsMap->getMap().count(info[index]) != 0) {
+            value = (int)varsMap->getVarValue(info[index]);
           //if this is a number
         } else {
             value = stoi(info[index]);

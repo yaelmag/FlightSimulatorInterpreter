@@ -9,8 +9,7 @@
 
 class NotEqual : public BooleanExpression {
 public:
-    NotEqual(Expression& leftExp, Expression& rightExp) : BooleanExpression(leftExp, rightExp) {
-    }
+    NotEqual(Expression* leftExp, Expression* rightExp) : BooleanExpression(leftExp, rightExp) {}
 
     string toString() override;
 

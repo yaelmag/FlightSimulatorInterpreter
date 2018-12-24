@@ -24,7 +24,7 @@ DataReaderServer::DataReaderServer(int port, SymbolTable & symbolTable, VarBindM
 void DataReaderServer::readFromClient() {
     this->server->setPort(this->port);
     server->openSock();
-    thread t (server->readData, server->getCliSock());
+    thread t (&server->readData, server->getCliSock());
     t.join();
 }
 

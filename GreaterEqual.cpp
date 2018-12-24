@@ -5,9 +5,9 @@
 #include "GreaterEqual.h"
 
 string GreaterEqual::toString() {
-    return (leftE.toString() + ">=" + rightE.toString());
+    return (leftE->toString() + ">=" + rightE->toString());
 }
 
 double GreaterEqual::evaluate() {
-    return (leftE.evaluate() >= rightE.evaluate());
+    return (leftE->evaluate() >= rightE->evaluate());
 }

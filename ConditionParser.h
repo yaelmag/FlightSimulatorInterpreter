@@ -10,6 +10,7 @@
 #include "BooleanExpression.h"
 
 
+
 class ConditionParser : public Command{
 BooleanExpression* booleanExpression;
 CommandsMap commands;

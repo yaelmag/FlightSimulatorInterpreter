@@ -72,7 +72,7 @@ void Server::openSock() {
 }
 
 //TODO:sleep
-void Server::readData(int cliSock) {
+void Server:: readData(int cliSock) {
     char buffer[BUFFER_SIZE];
     int  n;
     while (true) {
