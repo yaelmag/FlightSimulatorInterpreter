@@ -14,7 +14,7 @@
 
 using namespace std;
 
-DataReaderServer::DataReaderServer(int port, SymbolTable & symbolTable, VarBindMap & bindMap) {
+DataReaderServer::DataReaderServer(int port, SymbolTable* symbolTable, VarBindMap* bindMap) {
     this->port = port;
     this->symbolTable = symbolTable;
     this->bindMap = bindMap;
@@ -24,8 +24,8 @@ DataReaderServer::DataReaderServer(int port, SymbolTable & symbolTable, VarBindM
 void DataReaderServer::readFromClient() {
     this->server->setPort(this->port);
     server->openSock();
-    thread t (server->readData, server->getCliSock());
-    t.join();
+     thread t (server->readData, server->getCliSock(), symbolTable, bindMap);
+    t.detach();
 }
 
 void DataReaderServer::setPort(int p) {

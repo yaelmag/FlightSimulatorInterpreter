@@ -13,7 +13,7 @@ protected:
     Expression &rightE;
 
 public:
-    BinaryExpression(Expression &left, Expression &right) : leftE(left), rightE(right) {
+    BinaryExpression(Expression& left, Expression& right) : leftE(left), rightE(right) {
         this->leftE = left;
         this->rightE = right;
     }

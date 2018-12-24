@@ -16,7 +16,7 @@ VarBindMap varBindMap;
 DataReaderServer dataReaderServer;
 
 public:
-    OpenServerCommand(SymbolTable &varsMap, VarBindMap &varBindMap) : dataReaderServer(0, varsMap, varBindMap) {
+    OpenServerCommand(SymbolTable &varsMap, VarBindMap &varBindMap) : dataReaderServer(0, &varsMap, &varBindMap) {
         this->varsMap = varsMap;
         this->varBindMap = varBindMap;
     }

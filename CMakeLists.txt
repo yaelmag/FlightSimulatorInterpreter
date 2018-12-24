@@ -12,4 +12,4 @@ add_executable(project1 main.cpp Lexer.h Lexer.cpp PrintCommand.cpp PrintCommand
         BooleanExpression.cpp BooleanExpression.h GreaterEqual.cpp GreaterEqual.h Equal.cpp Equal.h NotEqual.cpp
         NotEqual.h ShuntingYard.cpp ShuntingYard.h SmallerEqual.cpp SmallerEqual.h Greater.cpp Greater.h
         Smaller.cpp Smaller.h CheckExpressions.cpp CheckExpressions.h ConditionParser.cpp ConditionParser.h
-        Plus.h Plus.cpp Minus.h Minus.cpp Div.h Div.cpp Mult.h Mult.cpp)
+        Plus.h Plus.cpp Minus.h Minus.cpp Div.h Div.cpp Mult.h Mult.cpp Client.cpp Client.h)
