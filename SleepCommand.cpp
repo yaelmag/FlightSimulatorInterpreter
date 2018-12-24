@@ -3,6 +3,7 @@
 //
 
 #include "SleepCommand.h"
+#include "PrintCommand.h"
 #include <unistd.h>
 
 SleepCommand:: SleepCommand(SymbolTable &varsMap) {
@@ -34,3 +35,7 @@ int SleepCommand:: doCommand(vector<string> info, int index) {
     sleep(value);
     return count;
 }
+
+//TODO: THE FUNCTION GETEXPRESSION - RECIEVE THE DATA AND RETURN THE EXPRESSIONS.
+//TODO: UPDATE THE TABLE
+//TODO: OPERATORS
