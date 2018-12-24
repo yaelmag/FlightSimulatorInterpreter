@@ -27,7 +27,7 @@ public:
      * @throws Exception - nothing
      */
     double evaluate() {
-        return SymbolsTable::getInstance()->getSymbolValue(var);;
+        return SymbolsTable::getInstance()->getSymbolValue(var);
     }
 
     /**

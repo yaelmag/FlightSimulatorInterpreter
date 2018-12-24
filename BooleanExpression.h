@@ -12,9 +12,6 @@ class BooleanExpression : public BinaryExpression {
 public:
     BooleanExpression(Expression *left, Expression *right);
 
-    void setLeft(Expression *left);
-    void setRight(Expression *right);
-
     virtual string toString() override = 0;
 
     virtual double evaluate() override = 0;

@@ -4,10 +4,7 @@
 
 #include "EqualOperatorCommand.h"
 
-EqualOperatorCommand::EqualOperatorCommand(SymbolTable *varsMap, VarBindMap *varBindMap) {
-    this->varsMap = varsMap;
-    this->varBindMap = varBindMap;
-}
+EqualOperatorCommand::EqualOperatorCommand() = default;
 
 int EqualOperatorCommand:: doCommand(vector<string> info, int index) {
     int count = 0;

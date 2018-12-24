@@ -12,25 +12,47 @@
 #include "Equal.h"
 #include "NotEqual.h"
 #include "Expression.h"
+#include "SymbolsTable.h"
+#include "Var.h"
 
 ConditionParser:: ConditionParser(vector<string> boolExp, CommandsMap &commands) {
-    double left, right;
-    ShuntingYard s;
-    left = s.evaluate(boolExp[0]).evaluate();
-    right = s.evaluate(boolExp[0]).evaluate();
-    if (boolExp[1] == ">") {
-        this->booleanExpression = new Greater(new Num(left), new Num(right));
-    } else if (boolExp[1] == ">=") {
-        this->booleanExpression =  new GreaterEqual(new Num(left), new Num(right));
-    } else if (boolExp[1] == "<") {
-        this->booleanExpression =  new Smaller(new Num(left), new Num(right));
-    } else if (boolExp[1] == "<=") {
-        this->booleanExpression =  new SmallerEqual(new Num(left), new Num(right));
-    } else if (boolExp[1] == "==") {
-        this->booleanExpression =  new Equal(new Num(left), new Num(right));
-    } else if (boolExp[1] == "!=") {
-        this->booleanExpression =  new NotEqual(new Num(left), new Num(right));
-    }
+    this->condition = this->createCondition(boolExp);
     this->commands = commands;
 }
 
+vector<Expression*> ConditionParser:: createExpressions(vector<string> boolExp) {
+    ShuntingYard s;
+    vector<Expression*> v;
+    Expression *leftExp, *rightExp;
+    if (SymbolsTable::getInstance()->isSymbolExist(boolExp[0])) {
+        leftExp = new Var(boolExp[0]);
+    } else {
+        leftExp = new Num(s.evaluate(boolExp[0]).evaluate());
+    }
+
+    if (SymbolsTable::getInstance()->isSymbolExist(boolExp[2])) {
+        rightExp = new Var(boolExp[2]);
+    } else {
+        rightExp = new Num(s.evaluate(boolExp[2]).evaluate());
+    }
+    v.push_back(leftExp);
+    v.push_back(rightExp);
+    return v;
+}
+
+BooleanExpression* ConditionParser:: createCondition(vector<string> boolExp) {
+    vector<Expression*> exps = createExpressions(boolExp);
+    if (boolExp[1] == ">") {
+        return new Greater(exps[0], exps[1]);
+    } else if (boolExp[1] == ">=") {
+        return new GreaterEqual(exps[0], exps[1]);
+    } else if (boolExp[1] == "<") {
+        return new Smaller(exps[0], exps[1]);
+    } else if (boolExp[1] == "<=") {
+        return  new SmallerEqual(exps[0], exps[1]);
+    } else if (boolExp[1] == "==") {
+        return  new Equal(exps[0], exps[1]);
+    } else if (boolExp[1] == "!=") {
+        return  new NotEqual(exps[0], exps[1]);
+    }
+}

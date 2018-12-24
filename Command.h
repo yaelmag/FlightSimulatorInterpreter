@@ -9,6 +9,7 @@
 #include <vector>
 #include "CheckExpressions.h"
 #include "ShuntingYard.h"
+#include "SymbolsTable.h"
 
 using namespace std;
 

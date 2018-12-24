@@ -8,13 +8,10 @@
 #include "VarBindMap.h"
 #include "SymbolTable.h"
 
-class EqualOperatorCommand : public Command{
-SymbolTable *varsMap;
-VarBindMap *varBindMap;
+class EqualOperatorCommand : public Command {
 public:
-    EqualOperatorCommand(SymbolTable *varsMap, VarBindMap *varBindMap);
+    EqualOperatorCommand();
     int doCommand(vector<string> info, int index);
-    VarBindMap getVarBindMap();
 };
 
 

@@ -3,11 +3,9 @@
 //
 
 #include "CheckExpressions.h"
+#include "SymbolsTable.h"
 
-CheckExpressions:: CheckExpressions(SymbolTable *varsMap) {
-    this->varsMap = varsMap;
-}
-
+CheckExpressions:: CheckExpressions() = default;
 vector<string> CheckExpressions:: getExpressions(vector<string> info, int index) {
     vector<string> expressions;
     string exp = "";
@@ -73,8 +71,8 @@ vector<string> CheckExpressions:: getExpressions(vector<string> info, int index)
 }
 
 string CheckExpressions:: getNumber(string num) {
-    if (varsMap->getMap().count(num) == 1) {
-        return to_string(varsMap->getVarValue(num));
+    if (SymbolsTable::getInstance()->isSymbolExist(num)) {
+        return to_string(SymbolsTable::getInstance()->getSymbolValue(num));
     }
     return num;
 }

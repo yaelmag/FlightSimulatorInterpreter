@@ -10,10 +10,9 @@
 #include <vector>
 
 class CheckExpressions {
-SymbolTable *varsMap;
 
 public:
-    CheckExpressions(SymbolTable *varsMap);
+    CheckExpressions();
     vector<string> getExpressions(vector<string> info, int index);
     string getNumber(string num);
     bool checkOperator(string s1, string s2);

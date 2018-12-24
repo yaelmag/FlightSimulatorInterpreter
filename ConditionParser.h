@@ -12,11 +12,13 @@
 
 
 class ConditionParser : public Command{
-BooleanExpression* booleanExpression;
+BooleanExpression* condition;
 CommandsMap commands;
 
 public:
     ConditionParser(vector<string> boolExp, CommandsMap &commands);
+    vector<Expression*> createExpressions(vector<string> boolExp);
+    BooleanExpression* createCondition(vector<string> boolExp);
     int doCommand(vector<string> info, int index) override = 0;
 };
 

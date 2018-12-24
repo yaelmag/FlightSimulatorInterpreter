@@ -6,11 +6,3 @@
 
 BooleanExpression:: BooleanExpression(Expression *left, Expression *right) :
 BinaryExpression(left, right) {}
-
-
-void BooleanExpression:: setLeft(Expression *left) {
-    this->leftE = left;
-}
-void BooleanExpression:: setRight(Expression *right) {
-    this->rightE
-}
