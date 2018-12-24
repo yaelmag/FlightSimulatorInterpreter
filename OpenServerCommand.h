@@ -14,7 +14,14 @@ class OpenServerCommand : public Command{
 DataReaderServer dataReaderServer;
 
 public:
+<<<<<<< HEAD
     OpenServerCommand() : dataReaderServer(0, varsMap, varBindMap);
+=======
+    OpenServerCommand(SymbolTable &varsMap, VarBindMap &varBindMap) : dataReaderServer(0, &varsMap, &varBindMap) {
+        this->varsMap = varsMap;
+        this->varBindMap = varBindMap;
+    }
+>>>>>>> origin/master
     int doCommand(vector<string> info, int index);
 };
 
