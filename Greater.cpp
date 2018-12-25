@@ -5,9 +5,9 @@
 #include "Greater.h"
 
 string Greater::toString() {
-    return leftE.toString() + ">" + rightE.toString();
+    return leftE->toString() + ">" + rightE->toString();
 }
 
 double Greater::evaluate() {
-    return (leftE.evaluate() > rightE.evaluate());
+    return (leftE->evaluate() > rightE->evaluate());
 }

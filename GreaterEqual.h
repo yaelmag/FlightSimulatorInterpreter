@@ -10,7 +10,7 @@
 class GreaterEqual : public BooleanExpression {
 
 public:
-    GreaterEqual(Expression& leftExp, Expression& rightExp) : BooleanExpression(leftExp, rightExp) {
+    GreaterEqual(Expression* leftExp, Expression* rightExp) : BooleanExpression(leftExp, rightExp) {
     }
 
     string toString() override;

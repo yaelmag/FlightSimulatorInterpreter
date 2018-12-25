@@ -8,10 +8,8 @@
 #include "SymbolTable.h"
 
 class SleepCommand : public Command {
-SymbolTable varsMap;
-
 public:
-    SleepCommand(SymbolTable &varsMap);
+    SleepCommand();
     int doCommand(vector<string> info, int index);
 
 };

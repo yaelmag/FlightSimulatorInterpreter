@@ -10,7 +10,7 @@
 
 class Equal : public BooleanExpression {
 public:
-    Equal(Expression& leftExp, Expression& rightExp) : BooleanExpression(leftExp, rightExp) {
+    Equal(Expression* leftExp, Expression* rightExp) : BooleanExpression(leftExp, rightExp) {
     }
 
     string toString() override;

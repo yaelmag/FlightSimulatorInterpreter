@@ -73,7 +73,12 @@ void Server::openSock() {
     cout << "finish accept" << endl;
 }
 
+<<<<<<< HEAD
+//TODO:sleep
+void Server:: readData(int cliSock) {
+=======
 void Server::readData(int cliSock, SymbolTable* symbolTable, VarBindMap* bindMap) {
+>>>>>>> origin/master
     char buffer[BUFFER_SIZE];
     int n;
     while (true) {

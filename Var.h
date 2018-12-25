@@ -1,34 +1,33 @@
 //
-// Created by yael on 12/19/18.
+// Created by adi on 24/12/18.
 //
 
-#ifndef PROJECT1_NUM_H
-#define PROJECT1_NUM_H
-
+#ifndef PROJECT1_VAR_H
+#define PROJECT1_VAR_H
 #include "Expression.h"
-#include "map"
-#include "list"
+#include "SymbolsTable.h"
 
-class Num : public Expression {
-    double num;
+class Var : public Expression{
+string var;
 
 public:
+
     /**
      * Constructor.
-     * @param num - a number of type double
+     * @param var - a var of type string
      */
-    Num(double num) {
-        this->num = num;
+    Var(string var) {
+        this->var = var;
     }
 
     /**
      * A convenience method. Like the `evaluate(assignment)` method above,
      * but uses an empty assignment.
-     * @return this number.
+     * @return this var.
      * @throws Exception - nothing
      */
     double evaluate() {
-        return this->num;
+        return SymbolsTable::getInstance()->getSymbolValue(var);
     }
 
     /**
@@ -36,8 +35,9 @@ public:
      * @return a nice string representation of the expression
      */
     string toString() {
-        return to_string(this->num);
+        return to_string(evaluate());
     }
 };
 
-#endif //PROJECT1_NUM_H
+
+#endif //PROJECT1_VAR_H

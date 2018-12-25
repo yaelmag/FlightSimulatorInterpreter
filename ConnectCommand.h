@@ -8,11 +8,9 @@
 #include "VarBindMap.h"
 #include "SymbolTable.h"
 
-class ConnectCommand : public Command{
-SymbolTable varsMap;
-VarBindMap varBindMap;
+class ConnectCommand : public Command {
 public:
-    ConnectCommand(SymbolTable &varsMap, VarBindMap &varBindMap);
+    ConnectCommand();
     int doCommand(vector<string> info, int index);
 };
 

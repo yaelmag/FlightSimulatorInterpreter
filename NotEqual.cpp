@@ -5,9 +5,9 @@
 #include "NotEqual.h"
 
 string NotEqual::toString() {
-    return leftE.toString() + "!=" + rightE.toString();
+    return leftE->toString() + "!=" + rightE->toString();
 }
 
 double NotEqual::evaluate() {
-    return (leftE.evaluate() != rightE.evaluate());
+    return (leftE->evaluate() != rightE->evaluate());
 }
