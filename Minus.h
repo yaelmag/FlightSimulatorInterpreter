@@ -10,7 +10,7 @@
 class Minus : public BinaryExpression{
 
 public:
-    Minus(Expression &leftE, Expression &rightE) : BinaryExpression(leftE, rightE) {
+    Minus(Expression *leftE, Expression *rightE) : BinaryExpression(leftE, rightE) {
         this->leftE = leftE;
         this->rightE = rightE;
     }

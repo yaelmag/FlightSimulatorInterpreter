@@ -17,9 +17,12 @@ using namespace std;
 
 class Parser {
 CommandsMap commands;
+static Parser *instance;
+    bool isBoolOperator(string boolOperator);
 public:
+    static Parser *getInstance();
     Parser(CommandsMap &commands);
-    void parser(vector<string> info);
+    int runner(vector<string> info, int index);
 };
 
 

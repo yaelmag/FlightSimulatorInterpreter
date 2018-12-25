@@ -8,17 +8,18 @@
 #include "Command.h"
 #include "CommandsMap.h"
 #include "BooleanExpression.h"
+#include "Parser.h"
 
 
 
 class ConditionParser : public Command{
-BooleanExpression* condition;
-CommandsMap commands;
 
-public:
-    ConditionParser(vector<string> boolExp, CommandsMap &commands);
     vector<Expression*> createExpressions(vector<string> boolExp);
     BooleanExpression* createCondition(vector<string> boolExp);
+
+public:
+    BooleanExpression* condition;
+    ConditionParser(vector<string> boolExp);
     int doCommand(vector<string> info, int index) override = 0;
 };
 

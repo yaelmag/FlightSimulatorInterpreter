@@ -15,9 +15,8 @@
 #include "SymbolsTable.h"
 #include "Var.h"
 
-ConditionParser:: ConditionParser(vector<string> boolExp, CommandsMap &commands) {
+ConditionParser:: ConditionParser(vector<string> boolExp) {
     this->condition = this->createCondition(boolExp);
-    this->commands = commands;
 }
 
 vector<Expression*> ConditionParser:: createExpressions(vector<string> boolExp) {

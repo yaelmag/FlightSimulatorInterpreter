@@ -103,6 +103,17 @@ vector<string> Lexer:: splitScript(string script) {
                         word = "";
                     }
                 }
+            } else if (script[i] == '}') {
+                if ((word != " ") && (!word.empty())) {
+                    // add the current word
+                    splitScript.push_back(word);
+                }
+                if (script[i - 1] != '\n') {
+                    splitScript.push_back("\n");
+                }
+                splitScript.push_back("}");
+                // reset the word
+                word = "";
             } else {
                 word += script[i];
             }
