@@ -8,63 +8,59 @@ EqualOperatorCommand::EqualOperatorCommand() = default;
 
 int EqualOperatorCommand:: doCommand(vector<string> info, int index) {
     int count = 0;
-
+    SymbolsTable *symbolsMap = SymbolsTable::getInstance();
     // if the var doesn't exist
-    if (varsMap.getMap().count(info[index]) == 0) {
+    if (!symbolsMap->isSymbolExist(info[index])) {
         __throw_invalid_argument("The var doesn't exist in the map");
     }
 
     // if the var has bind, connect him to the simulator
     if (info[index + 2] == "bind" && info[index + 4] == "\n") {
         if (info[index + 3][0] == '"') {
-            // update the bind of the var in the varBindMap
-            this->varBindMap.addVarBind(info[index], info[index + 3]);
+            // update the bind of the var in the SymbolsTable
+            symbolsMap->setSymbol(info[index], info[index + 3]);
         } else {
-            string bind = this->varBindMap.getVarBind(info[index + 3]);
-            // update the bind of the var in the varBindMap
-            this->varBindMap.addVarBind(info[index], bind);
+            // update the bind of the var in the SymbolsTable
+            symbolsMap->bindNewSymbolToExistSymbol(info[index], info[index + 3]);
         }
 
         //todo
         //להכניס ממש את הערך שיש בסימולטור לתוך הסימבול טייבל
         count = 5;
-    } else if (info[index + 2] != "bind"){
-
+    } else if (info[index + 2] != "bind") {
+        double value;
         // if there is one argument after the "="
         if (info[index + 3] == "\n") {
-            double value;
             // if the argument is var, take his value from the SymbolTable map
-            if (varsMap.getMap().count(info[index + 3]) != 0) {
-                value = varsMap.getVarValue(info[index + 2]);
+            if (symbolsMap->isSymbolExist(info[index + 2])) {
+                value = symbolsMap->getSymbolValue(info[index + 2]);
             } else {
                 value = stod(info[index + 2]);
             }
-            // if the var before the "=" is connected to the simulator,
-            // sent to the simulator the new value
-            if (this->varBindMap.getMap().count(info[index]) == 1) {
-                //todo
-                //לעדכן את הסימולטור עם הערך החדש
-            }
             // update the other var with this new value (in the SymbolTable map)
-            varsMap.setVarValue(info[index],value);
+            symbolsMap->setSymbol(info[index], value);
             count = 4;
           // if the argument is expression
         } else {
-            string exp = "";
-            string s = "";
-            int i = 2;
-            count = 2;
-            while (info[index + i] != "\n") {
-                s += info[index + i];
-                i++;
-                count++;
+            CheckExpressions c;
+            ShuntingYard s;
+            vector<string> exp = c.getExpressions(info, index + 2);
+            if (exp.size() != 1) {
+                __throw_invalid_argument("There is to many arguments");
+            } else {
+                value = s.evaluate(exp[0]).evaluate();
+                // update the other var with this new value (in the SymbolTable map)
+                symbolsMap->setSymbol(info[index], value);
+                count = exp[0].length() + 3;
             }
-            count++;
+        }
+        // if the var before the "=" is connected to the simulator,
+        // sent to the simulator the new value
+        if (!symbolsMap->getSymbolPath(info[index]).empty() &&
+            symbolsMap->getSymbolPath(info[index])[0] == '"') {
+            //todo
+            //לעדכן את הסימולטור עם הערך החדש
         }
     }
     return count;
-}
-
-VarBindMap EqualOperatorCommand:: getVarBindMap() {
-    return this->varBindMap;
 }
