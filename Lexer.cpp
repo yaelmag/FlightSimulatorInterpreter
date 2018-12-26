@@ -34,9 +34,9 @@ string Lexer:: fileToString() {
     return allScript;
 }
 
-vector<string> Lexer:: splitScript(string script) {
+vector<string> Lexer:: splitScript() {
     // get all the script info in one string
-    //string script = fileToString();
+    string script = fileToString();
     vector<string> splitScript;
     int check = 0;
     string word;
@@ -57,7 +57,7 @@ vector<string> Lexer:: splitScript(string script) {
                 // reset the word
                 word = "";
               // if we saw '"' for the first time
-            } else if (script[i] == '"') {
+            } else if (script[i] == '\"') {
                 // add the '"'
                 word += script[i];
                 check = 1;
@@ -103,12 +103,23 @@ vector<string> Lexer:: splitScript(string script) {
                         word = "";
                     }
                 }
+            } else if (script[i] == '}') {
+                if ((word != " ") && (!word.empty())) {
+                    // add the current word
+                    splitScript.push_back(word);
+                }
+                if (script[i - 1] != '\n') {
+                    splitScript.push_back("\n");
+                }
+                splitScript.push_back("}");
+                // reset the word
+                word = "";
             } else {
                 word += script[i];
             }
           // if we in the '"' keep copy the chars until we saw '"' again
         } else if (check == 1) {
-            if (script[i] == '"') {
+            if (script[i] == '\"') {
                 check = 0;
                 // add the '"'
                 word += script[i];
@@ -116,8 +127,9 @@ vector<string> Lexer:: splitScript(string script) {
                 splitScript.push_back(word);
                 // reset the word
                 word = "";
+            } else {
+                word += script[i];
             }
-            word += script[i];
         }
 
     }

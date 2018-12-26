@@ -6,17 +6,30 @@
 #include "OpenServerCommand.h"
 
 int OpenServerCommand:: doCommand(vector<string> info, int index) {
-    int arg1, arg2;
-    if (info.at(2) != "\n") {
-        throw "invalid number of arguments";
-    }
-    try {
-        arg1 = stoi(info.at(0));
-        arg2 = stoi(info.at(1));
-    } catch (...) {
-        throw "invalid type of arguments (required int)";
+    cout<<"in openDataServer"<<endl;
+    int arg1, arg2, count;
+    if (info.at(index + 2) == "\n") {
+        count = 3;
+        try {
+            arg1 = stoi(info.at(index));
+            arg2 = stoi(info.at(index+1));
+        } catch (...) {
+            __throw_invalid_argument("invalid type of argument (required int)");
+        }
+    } else {
+        CheckExpressions c;
+        ShuntingYard s;
+        vector<string> exp = c.getExpressions(info, index);
+        if (exp.size() != 2) {
+            __throw_invalid_argument("The number of arguments invalid");
+        }
+        arg1 = (int) s.evaluate(exp[0]).evaluate();
+        arg2 = (int) s.evaluate(exp[1]).evaluate();
+        count = exp[0].length() + exp[1].length() + 1;
     }
     this->dataReaderServer.setPort(arg1);
     this->dataReaderServer.readFromClient();
-    return index+3;
+    cout<<"end openServerCommand"<<endl;
+    cout<<count<<endl;
+    return count;
 }

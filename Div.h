@@ -10,8 +10,8 @@
 
 class Div : public BinaryExpression {
 public:
-    Div(Expression &leftE, Expression &rightE) : BinaryExpression(leftE, rightE) {
-        if (rightE.toString().substr(0, 2).compare("0.") == 0) {
+    Div(Expression *leftE, Expression *rightE) : BinaryExpression(leftE, rightE) {
+        if (rightE->toString().substr(0, 2).compare("0.") == 0) {
             throw "divide by zero exception";
         }
         this->leftE = leftE;

@@ -11,16 +11,16 @@
 #include <map>
 #include <iostream>
 #include <vector>
+#include <mutex>
 //#include "DataWriterClient.h"
 
 using namespace std;
 
-struct SymbolData
-{
+struct SymbolData {
     double value;
     std::string path;
 
-    SymbolData(double value, std::string path = NULL){
+    SymbolData(double value, std::string path = nullptr) {
         this->value = value;
         this->path = path;
     }
@@ -36,17 +36,25 @@ private:
     SymbolsTable();
 
     std::map<std::string, SymbolData*> symbolsMap;
-   // DataWriterClient *client;
+    // DataWriterClient *client;
 
+    mutex mtx1; //lock for symbols sets
+    mutex mtx2; //lock for symbols sets
+    mutex mtx3; //lock for symbols sets
+    mutex mtx4; //lock for symbols sets
 
 public:
     /* Static access method. */
     static SymbolsTable *getInstance();
+    static void destroyInstance();
 
     //static std::string paths[23];
     static std::vector<std::string> paths;
 
+    std::vector<std::string> getPaths();
+    std::map<std::string, SymbolData*> getSymbolsMap();
     void setSymbol(std::string symbol, double value, std::string path);
+    void setSymbol(std::string symbol, std::string path);
     void setSymbol(std::string symbol, double value);
     double getSymbolValue(std::string symbol);
     string getSymbolPath(std::string symbol);
@@ -57,6 +65,7 @@ public:
     //DataWriterClient *getClient() const;
 
     //void setClient(DataWriterClient *client);
+    ~SymbolsTable();
 };
 
 

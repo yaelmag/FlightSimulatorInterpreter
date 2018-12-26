@@ -17,14 +17,21 @@
 using namespace std;
 
 class Client {
+    static Client* instance;
     int sockfd, port;
-    char* ipByName;
+    string ipByName;
 
+    Client() = default;
 public:
-    Client(int port, char* ipByName);
-    void writeData(string massege, double value);
+    static Client *getInstance();
+    void setPort(int port);
+    void setIp(string ipByName);
+    static void destroyClient();
+    void openSocket();
+    void writeData(std::string massege, double value);
+    //TODO destructor.
+    //~Client();
 };
 
 
 #endif //PROJECT1_CLIENT_H
-//TODO: finish the client and finish the table according the map of shaked in the server and the client.

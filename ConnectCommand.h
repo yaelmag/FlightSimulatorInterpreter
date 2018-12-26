@@ -11,7 +11,7 @@
 class ConnectCommand : public Command {
 public:
     ConnectCommand();
-    int doCommand(vector<string> info, int index);
+    int doCommand(vector<string> info, int index) override;
 };
 
 

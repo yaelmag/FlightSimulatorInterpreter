@@ -5,7 +5,7 @@
 #include "Minus.h"
 
 double Minus::evaluate() {
-    return this->leftE.evaluate() - this->rightE.evaluate();
+    return this->leftE->evaluate() - this->rightE->evaluate();
 }
 
 string Minus::toString() {

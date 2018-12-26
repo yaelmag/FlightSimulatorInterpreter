@@ -5,7 +5,7 @@
 #include "Plus.h"
 
 double Plus::evaluate() {
-    return this->leftE.evaluate() + this->rightE.evaluate();
+    return this->leftE->evaluate() + this->rightE->evaluate();
 }
 
 string Plus::toString() {

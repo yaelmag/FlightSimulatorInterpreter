@@ -18,8 +18,8 @@ int ShuntingYard::precedence(char op){
 
 // Function to perform arithmetic operations.
 double ShuntingYard::applyOp(double a, double b, char op){
-    Expression& aExp = *(new Num(a));
-    Expression& bExp = *(new Num(b));
+    Expression* aExp = new Num(a);
+    Expression* bExp = new Num(b);
     switch(op){
         case '+': return (new Plus(aExp, bExp))->evaluate();
         case '-': return (new Minus(aExp, bExp))->evaluate();

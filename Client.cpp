@@ -15,16 +15,28 @@
 #include <netinet/in.h>
 
 #include <string.h>
+#include <iostream>
 
-Client::Client(int port, char* ipByName) {
+Client* Client::instance = nullptr;
+
+Client* Client::getInstance() {
+    if (instance == nullptr) {
+        instance = new Client();
+    }
+    return instance;
+}
+
+void Client::setPort(int port) {
     this->port = port;
+}
+
+void Client::setIp(string ipByName) {
     this->ipByName = ipByName;
 }
 
-void Client::writeData(string massege, double value) {
+void Client::openSocket() {
     struct sockaddr_in serv_addr;
     struct hostent *server;
-    string buffer = "set " + massege + " " + to_string(value) + "\r\n";
 
 /* Create a socket point */
     this->sockfd = socket(AF_INET, SOCK_STREAM, 0);
@@ -33,8 +45,8 @@ void Client::writeData(string massege, double value) {
         perror("ERROR opening socket");
         exit(1);
     }
-
-    server = gethostbyname(ipByName);
+    cout << "7777" << ipByName <<endl;
+    server = gethostbyname(ipByName.c_str());
 
     if (server == NULL) {
         fprintf(stderr, "ERROR, no such host\n");
@@ -51,11 +63,21 @@ void Client::writeData(string massege, double value) {
         perror("ERROR connecting");
         exit(1);
     }
+}
 
+void Client::writeData(string massege, double value) {
+    massege = massege.substr(2, massege.length() - 3);
+    string buffer = "set " + massege + " " + to_string(value) + "\r\n";
 /* Send message to the server */
     if (send(this->sockfd, buffer.c_str(), strlen(buffer.c_str()), 0) < 0) {
         perror("send failed: ");
         exit(1);
     }
+}
 
+void Client::destroyClient() {
+    if (instance != nullptr) {
+        delete instance;
+    }
+    instance = nullptr;
 }

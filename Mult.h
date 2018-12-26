@@ -10,7 +10,7 @@
 
 class Mult : public BinaryExpression{
 public:
-    Mult(Expression &leftE, Expression &rightE) : BinaryExpression(leftE, rightE) {
+    Mult(Expression *leftE, Expression *rightE) : BinaryExpression(leftE, rightE) {
         this->leftE = leftE;
         this->rightE = rightE;
     }

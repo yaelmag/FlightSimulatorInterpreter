@@ -14,7 +14,7 @@ string file;
 public:
     Lexer(const string &file);
     string fileToString();
-    vector<string> splitScript(string script);
+    vector<string> splitScript();
 };
 
 

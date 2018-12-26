@@ -13,13 +13,11 @@
 #include <string.h>
 #include <sys/socket.h>
 #include <sstream>
-
+extern bool isConnect;
 using namespace std;
 
 Server::Server(int port) {
     this->port = port;
-    //this->symbolTable = symbolTable;
-    //this->bindMap = bindMap;
 }
 
 void Server::setPort(int p) {
@@ -70,14 +68,11 @@ void Server::openSock() {
         perror("ERROR on accept");
         exit(1);
     }
+    isConnect = true;
     cout << "finish accept" << endl;
 }
 
-//TODO:sleep
 void Server:: readData(int cliSock) {
-=======
-void Server::readData(int cliSock, SymbolTable* symbolTable, VarBindMap* bindMap) {
->>>>>>> origin/master
     char buffer[BUFFER_SIZE];
     int n;
     while (true) {
@@ -89,8 +84,8 @@ void Server::readData(int cliSock, SymbolTable* symbolTable, VarBindMap* bindMap
             perror("ERROR reading from socket");
             exit(1);
         }
-        cout << "readdata" << endl;
-        updateTable(buffer, symbolTable, bindMap);
+        //cout << "readdata" << endl;
+        updateTable(buffer);
         //printf("Here is the message: %s\n", buffer);
     }
 }
@@ -99,46 +94,27 @@ int Server::getCliSock() {
     return this->cliSockfd;
 }
 
-void Server::updateTable(string massege, SymbolTable* symbolTable, VarBindMap* bindMap) {
+void Server::updateTable(string massege) {
     vector<double> valuesFromSim = split(massege, ',');
-    cout << "values" << endl;
-    cout << bindMap->getMap().size() << endl;
-    for (auto const& value : bindMap->getMap()) {
-        cout << "inloop1" << endl;
+    //cout << "values" << endl;
+    //cout << SymbolsTable::getInstance() << endl;
+    for (auto const& value : SymbolsTable::getInstance()->getSymbolsMap()) {
+        //cout << "inloop1" << endl;
         string var = value.first;
-        string path = value.second;
-        int i = indexInMap(path);
-        cout << "inloop" << endl;
-        if (i != -1) {
-            symbolTable->getMap()[var] = valuesFromSim.at(i);
-            cout << symbolTable->getMap()[var] << "=" << valuesFromSim.at(i) <<endl;
+        string path = value.second->path;
+        if (var != path) {
+            int i = indexInMap(path);
+            if (i != -1) {
+                value.second->value = valuesFromSim.at(i);
+                //cout << var << "=" << valuesFromSim.at(i) << endl;
+            }
         }
     }
-    cout << "afterloop" << endl;
+    //cout << "afterloop" << endl;
 }
 
 int Server::indexInMap(string path) {
-    vector<string> names = {"/instrumentation/airspeed-indicator/indicated-speed-kt",
-                   "/instrumentation/altimeter/indicated-altitude-ft",
-                   "/instrumentation/altimeter/pressure-alt-ft",
-                   "/instrumentation/attitude-indicator/indicated-pitch-deg",
-                   "/instrumentation/attitude-indicator/indicated-roll-deg",
-                   "/instrumentation/attitude-indicator/internal-pitch-deg",
-                   "/instrumentation/attitude-indicator/internal-roll-deg",
-                   "/instrumentation/encoder/indicated-altitude-ft",
-                   "/instrumentation/encoder/pressure-alt-ft",
-                   "/instrumentation/gps/indicated-altitude-ft",
-                   "/instrumentation/gps/indicated-ground-speed-kt",
-                   "/instrumentation/gps/indicated-vertical-speed",
-                   "/instrumentation/heading-indicator/indicated-heading-deg",
-                   "/instrumentation/magnetic-compass/indicated-heading-deg",
-                   "/instrumentation/slip-skid-ball/indicated-slip-skid",
-                   "/instrumentation/turn-indicator/indicated-turn-rate",
-                   "/instrumentation/vertical-speed-indicator/indicated-speed-fpm",
-                   "/controls/flight/aileron","/controls/flight/elevator",
-                   "/controls/flight/rudder","/controls/flight/flaps",
-                   "/controls/engines/engine/throttle",
-                   "/engines/engine/rpm"};
+    vector<string> names = SymbolsTable::getInstance()->getPaths();
     for (int i = 0; i < names.size(); i++) {
         if (names[i] == path) {
             return i;
