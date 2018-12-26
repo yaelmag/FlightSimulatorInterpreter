@@ -54,6 +54,19 @@ int EqualOperatorCommand:: doCommand(vector<string> info, int index) {
                 value = s.evaluate(exp[0]).evaluate();
                 // update the other var with this new value (in the SymbolTable map)
                 symbolsMap->setSymbol(info[index - 2], value);
+                bool flag = false;
+                for (int i = 0; i < exp[0].length(); i++) {
+                     if ((exp[0][i] != '+') && (exp[0][i] != '-') && (exp[0][i] != '/') &&
+                     (exp[0][i] != '*') && (exp[0][i] != '(') && (exp[0][i] != ')')) {
+                         if (!flag) {
+                             count++;
+                             flag = true;
+                         }
+                     } else {
+                         count++;
+                         flag = true;
+                     }
+                }
                 count = exp[0].length() + 1;
             }
         }
