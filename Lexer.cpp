@@ -24,11 +24,13 @@ string Lexer:: fileToString() {
     }
     // push all the script's line in one string
     while (getline(readFile, line)) {
-        allScript += line;
-        allScript += " ";
-        // push also '\n' so we knew when every line end
-        allScript += '\n';
-        allScript += " ";
+        if (line != "" && line != "\n") {
+            allScript += line;
+            allScript += " ";
+            // push also '\n' so we knew when every line end
+            allScript += '\n';
+            allScript += " ";
+        }
     }
     readFile.close();
     return allScript;
@@ -108,7 +110,9 @@ vector<string> Lexer:: splitScript() {
                     // add the current word
                     splitScript.push_back(word);
                 }
-                if (script[i - 1] != '\n') {
+                if (script[i - 1] == '\n') {
+                    cout<<"in"<<endl;
+                    cout<<script[i - 1]<<endl;
                     splitScript.push_back("\n");
                 }
                 splitScript.push_back("}");

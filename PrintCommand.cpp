@@ -10,7 +10,7 @@ PrintCommand:: PrintCommand() = default;
 int PrintCommand:: doCommand(vector<string> info, int index) {
     int count = 0;
     if (info[index + 1] == "\n") {
-        count = 3;
+        count = 2;
         double value;
         // if the var in the map
         if (SymbolsTable::getInstance()->isSymbolExist(info[index])) {
@@ -30,7 +30,7 @@ int PrintCommand:: doCommand(vector<string> info, int index) {
         if (exp.size() != 1) {
             __throw_invalid_argument("There are too many arguments");
         }
-        count = 2 + exp[0].length();
+        count = 1 + exp[0].length();
         ShuntingYard s;
         double num = s.evaluate(exp[0]).evaluate();
         cout<<num<<endl;

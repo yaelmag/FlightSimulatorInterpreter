@@ -42,6 +42,7 @@ int Parser:: runner(vector<string> info, int index) {
             cout<<"index:"<<index<<endl;
           // if there is while or if
         } else if (info[index] == "while" || info[index] == "if") {
+
             string conditionType = info[index];
             vector<string> boolExp;
             string word = "";
@@ -68,7 +69,7 @@ int Parser:: runner(vector<string> info, int index) {
             boolExp.push_back(word);
             // go on the commands in the while loop/ if
             index += 2;
-
+            cout<<info[index]<<endl;
             // if its while command
             if (conditionType == "while") {
                 c = new WhileCommand(boolExp);
@@ -84,8 +85,11 @@ int Parser:: runner(vector<string> info, int index) {
            // if we get to EqualCommand
         } else if (info[index + 1] == "=") {
             cout<<"yayy"<<endl;
+            cout<<index<<endl;
             c = commands.getMap().find(info[index + 1])->second;
             index += c->doCommand(info, index + 2) + 2;
+            cout<<index<<endl;
+            cout<<info[index]<<endl;
         }
     }
     return 0;

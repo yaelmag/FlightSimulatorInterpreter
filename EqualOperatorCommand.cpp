@@ -47,6 +47,7 @@ int EqualOperatorCommand:: doCommand(vector<string> info, int index) {
             CheckExpressions c;
             ShuntingYard s;
             vector<string> exp = c.getExpressions(info, index);
+            cout<<exp[0]<<endl;
             if (exp.size() != 1) {
                 __throw_invalid_argument("There is to many arguments");
             } else {
