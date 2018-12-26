@@ -4,8 +4,7 @@
 
 #include "SymbolsTable.h"
 
-std::vector<std::string> SymbolsTable::paths(
-        {
+std::vector<std::string> SymbolsTable::paths({
                 "/instrumentation/airspeed-indicator/indicated-speed-kt",
                 "/instrumentation/altimeter/indicated-altitude-ft",
                 "/instrumentation/altimeter/pressure-alt-ft",
@@ -28,9 +27,7 @@ std::vector<std::string> SymbolsTable::paths(
                 "/controls/flight/rudder",
                 "/controls/flight/flaps",
                 "/controls/engines/engine/throttle",
-                "/engines/engine/rpm"
-
-        });
+                "/engines/engine/rpm"});
 
 
 /* Null, because instance will be initialized on demand. */

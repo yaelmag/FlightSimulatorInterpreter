@@ -73,7 +73,6 @@ void Server::openSock() {
     cout << "finish accept" << endl;
 }
 
-<<<<<<< HEAD
 //TODO:sleep
 void Server:: readData(int cliSock) {
 =======
