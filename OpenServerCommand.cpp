@@ -25,7 +25,8 @@ int OpenServerCommand:: doCommand(vector<string> info, int index) {
         }
         arg1 = (int) s.evaluate(exp[0]).evaluate();
         arg2 = (int) s.evaluate(exp[1]).evaluate();
-        count = c.getExpressionLength(exp[0]) + c.getExpressionLength(exp[1]) + 1;
+        count = c.getExpressionLength(exp[0]) + c.getExpressionLength(exp[1]) +
+                c.countCommas(info, index) + 1;
     }
     this->dataReaderServer.setPort(arg1);
     this->dataReaderServer.readFromClient();

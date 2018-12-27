@@ -9,7 +9,7 @@ CheckExpressions:: CheckExpressions() = default;
 vector<string> CheckExpressions:: getExpressions(vector<string> info, int index) {
     vector<string> expressions;
     string exp = "";
-    string num;
+    string num = "";
     int flag = 0;
     int i = 0;
     if (info[index] == "-") {
@@ -21,22 +21,34 @@ vector<string> CheckExpressions:: getExpressions(vector<string> info, int index)
             (info[index + i] != "/") && (info[index + i] != "*") && (info[index + i] != "(") &&
             (info[index + i] != ")")) {
 
-            num = getNumber(info[index + i]);
+            if (info[index + i] != ",") {
+                num = getNumber(info[index + i]);
+            }
+
             // before the number was operator
-            if (flag == 0) {
-                if (info[index + i - 1] == ")") {
+            if(flag == 0) {
+                if (i != 0 && info[index + i - 1] == ")") {
                     expressions.push_back(exp);
                     exp = "";
                     exp += num;
+                    flag = 1;
+                } else if (info[index + i] == ",") {
+                    expressions.push_back(exp);
+                    exp = "";
                 } else {
                     exp += num;
+                    flag = 1;
                 }
-                flag = 1;
                 // before the number was number
-            } else if (flag == 1){
-                expressions.push_back(exp);
-                exp = "";
-                exp += num;
+            } else if (flag == 1) {
+                if (info[index + i] == ",") {
+                    expressions.push_back(exp);
+                    exp = "";
+                } else {
+                    expressions.push_back(exp);
+                    exp = "";
+                    exp += num;
+                }
             }
             // if there is an operator
         } else {
@@ -48,7 +60,9 @@ vector<string> CheckExpressions:: getExpressions(vector<string> info, int index)
                 exp += info[index + i];
                 flag = 0;
                 // before the operator was operator
-            } else if (flag == 0 && checkOperator(info[index + i - 1], info[index + i])){
+            } else if (flag == 0 && (checkOperator(info[index + i - 1], info[index + i]) ||
+                       info[index + i - 1] == ",")) {
+                cout<<"good"<<endl;
                 exp += info[index + i];
                 // the expression is invalid
             } else {
@@ -118,4 +132,16 @@ int CheckExpressions:: getExpressionLength(string exp) {
     }
     return count;
 
+}
+
+int CheckExpressions:: countCommas(vector<string> info, int index) {
+    int count = 0;
+    int i = 0;
+    while (info[index + i] != "\n") {
+        if (info[index + i] == ",") {
+            count++;
+        }
+        i++;
+    }
+    return count;
 }
