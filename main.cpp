@@ -26,7 +26,6 @@ int main(int argc, char*argv[]) {
     v.push_back("+");
     v.push_back("4");
     v.push_back(",");
-    v.push_back("-");
     v.push_back("3");
     v.push_back("\n");
     cout<<"ok"<<endl;

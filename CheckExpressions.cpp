@@ -44,6 +44,7 @@ vector<string> CheckExpressions:: getExpressions(vector<string> info, int index)
                 if (info[index + i] == ",") {
                     expressions.push_back(exp);
                     exp = "";
+                    flag = 0;
                 } else {
                     expressions.push_back(exp);
                     exp = "";
