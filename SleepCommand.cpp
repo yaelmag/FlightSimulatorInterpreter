@@ -27,12 +27,12 @@ int SleepCommand:: doCommand(vector<string> info, int index) {
         if (exp.size() != 1) {
             __throw_invalid_argument("There are too many arguments");
         }
-        count = check.getExpressionLength(exp[0]);
+        count = check.getExpressionLength(exp[0]) + check.countCommas(info, index);
         count++;
         ShuntingYard s;
         value = (int)s.evaluate(exp[0]).evaluate();
     }
     //this_thread::sleep_for(chrono::milliseconds(value))
-    sleep(value);
+    usleep(value);
     return count;
 }

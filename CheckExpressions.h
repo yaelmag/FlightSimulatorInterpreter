@@ -17,6 +17,7 @@ public:
     string getNumber(string num);
     bool checkOperator(string s1, string s2);
     int getExpressionLength(string exp);
+    int countCommas(vector<string> info, int index);
 };
 
 
