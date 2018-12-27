@@ -70,6 +70,17 @@ void Server::openSock() {
     cout << "finish accept" << endl;
 }
 
+void Server::readLineBeforeStart(int cliSock) {
+    char buf[BUFFER_SIZE];
+    int n;
+    bzero(buf, (BUFFER_SIZE - 1));
+    n = read(cliSock, buf, (BUFFER_SIZE - 1));
+    if (n < 0) {
+        perror("ERROR reading from socket");
+        exit(1);
+    }
+}
+
 void Server:: readData(int cliSock) {
     char buffer[BUFFER_SIZE];
     int n;
