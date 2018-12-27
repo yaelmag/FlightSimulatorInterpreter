@@ -29,6 +29,7 @@ int Parser:: runner(vector<string> info, int index) {
         if (commands.getMap().count(info[index]) == 1) {
             if (commands.getMap().find(info[index])->first == "connect") {
                 cin.ignore();
+
                 cout<<"can connect"<<endl;
             }
             cout<<"index:"<<index<<endl;

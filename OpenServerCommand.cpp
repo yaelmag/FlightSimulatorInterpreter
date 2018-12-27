@@ -19,6 +19,7 @@ int OpenServerCommand:: doCommand(vector<string> info, int index) {
     } else {
         CheckExpressions c;
         ShuntingYard s;
+        
         vector<string> exp = c.getExpressions(info, index);
         if (exp.size() != 2) {
             __throw_invalid_argument("The number of arguments invalid");
