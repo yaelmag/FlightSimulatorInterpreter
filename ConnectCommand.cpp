@@ -16,6 +16,7 @@ int ConnectCommand:: doCommand(vector<string> info, int index) {
         strIp = info.at(index);
         try {
             port = stoi(info.at(index+1));
+
         } catch (...) {
             throw "invalid type of argument (required int)";
         }
@@ -32,13 +33,13 @@ int ConnectCommand:: doCommand(vector<string> info, int index) {
         } catch (...) {
             throw "invalid type of argument (required int)";
         }
-        count = c.getExpressionLength(exp[0]) + c.countCommas(info, index) + 2;
+        count = c.getLength(info, index) + 1;
     }
 
     //char* ipByName = strcpy((char*)malloc(strIp.length() + 1), strIp.c_str());
     cout<<"connect"<<endl;
     Client::getInstance();
-    cout << "port = " + port << endl;
+    cout << "port = " << port << endl;
     Client::getInstance()->setPort(port);
     cout << "ip = " << strIp << endl;
     Client::getInstance()->setIp(strIp);

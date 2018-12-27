@@ -15,6 +15,15 @@ int main(int argc, char*argv[]) {
     string fileName = argv[1];
     Lexer l = Lexer(fileName);
     splitInfo = l.splitScript();
+    /*string s = "\"/lol/mta/yay\"";
+    string t = "yesss";
+    cout<<s<<endl;
+    string newS = s.substr(2, s.length() - 2);
+    cout<<newS<<endl;
+    cout<<t<<endl;
+    string newT = t.substr(2, t.length() - 3);
+    cout<<newT<<endl;*/
+
     /*for (int i = 0; i < vec.size(); i++) {
         cout<< vec[i]<<" ";
     }*/

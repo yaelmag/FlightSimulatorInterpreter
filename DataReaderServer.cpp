@@ -22,7 +22,7 @@ DataReaderServer::DataReaderServer(int port) {
 void DataReaderServer::readFromClient() {
     this->server->setPort(this->port);
     server->openSock();
-    server->readLineBeforeStart(server->getCliSock());
+    //server->readLineBeforeStart(server->getCliSock());
     thread t (&server->readData, server->getCliSock());
     t.detach();
 }

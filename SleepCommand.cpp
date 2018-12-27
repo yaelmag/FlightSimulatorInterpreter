@@ -27,7 +27,7 @@ int SleepCommand:: doCommand(vector<string> info, int index) {
         if (exp.size() != 1) {
             __throw_invalid_argument("There are too many arguments");
         }
-        count = check.getExpressionLength(exp[0]) + check.countCommas(info, index);
+        count = check.getLength(info, index);;
         count++;
         ShuntingYard s;
         value = (int)s.evaluate(exp[0]).evaluate();

@@ -63,7 +63,6 @@ vector<string> CheckExpressions:: getExpressions(vector<string> info, int index)
                 // before the operator was operator
             } else if (flag == 0 && (checkOperator(info[index + i - 1], info[index + i]) ||
                        info[index + i - 1] == ",")) {
-                cout<<"good"<<endl;
                 exp += info[index + i];
                 // the expression is invalid
             } else {
@@ -142,6 +141,16 @@ int CheckExpressions:: countCommas(vector<string> info, int index) {
         if (info[index + i] == ",") {
             count++;
         }
+        i++;
+    }
+    return count;
+}
+
+int CheckExpressions:: getLength(vector<string> info, int index) {
+    int count = 0;
+    int i = 0;
+    while(info[index + i] != "\n") {
+        count++;
         i++;
     }
     return count;

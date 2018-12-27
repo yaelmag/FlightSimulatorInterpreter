@@ -45,7 +45,6 @@ void Client::openSocket() {
         perror("ERROR opening socket");
         exit(1);
     }
-    cout << "7777" << ipByName <<endl;
     server = gethostbyname(ipByName.c_str());
 
     if (server == NULL) {

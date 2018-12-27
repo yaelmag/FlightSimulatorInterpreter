@@ -111,8 +111,7 @@ vector<string> Lexer:: splitScript() {
                     splitScript.push_back(word);
                 }
                 if (script[i - 2] != '\n' && word != "\n") {
-                    cout<<"in"<<endl;
-                    cout<<script[i - 1]<<endl;
+
                     splitScript.push_back("\n");
                 }
                 splitScript.push_back("}");

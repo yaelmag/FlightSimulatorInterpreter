@@ -11,7 +11,6 @@ int WhileCommand:: doCommand(vector<string> info, int index) {
     Parser* parser = Parser::getInstance();
     // represent if we already get to the end of the loop once
     bool flag = false;
-    cout<<this->condition->evaluate()<<endl;
     while (this->condition->evaluate()) {
         if (!flag) {
             endLoop = parser->runner(info, index);

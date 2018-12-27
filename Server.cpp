@@ -42,8 +42,6 @@ void Server::openSock() {
     serv_addr.sin_addr.s_addr = INADDR_ANY;
     serv_addr.sin_port = htons(this->port);
 
-    cout << this->port << endl;
-
     cout << "bind" << endl;
     /* Now bind the host address using bind() call.*/
     if (bind(this->serverSockfd, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) {
@@ -115,7 +113,7 @@ void Server::updateTable(string massege) {
             int i = indexInMap(path);
             if (i != -1) {
                 value.second->value = valuesFromSim.at(i);
-                cout << var << "=" << valuesFromSim.at(i) << endl;
+                /*cout << var << "=" << valuesFromSim.at(i) << endl;*/
             }
         }
     }

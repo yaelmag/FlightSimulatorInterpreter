@@ -18,6 +18,7 @@ public:
     bool checkOperator(string s1, string s2);
     int getExpressionLength(string exp);
     int countCommas(vector<string> info, int index);
+    int getLength(vector<string> info, int index);
 };
 
 

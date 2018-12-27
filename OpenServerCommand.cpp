@@ -6,7 +6,6 @@
 #include "OpenServerCommand.h"
 
 int OpenServerCommand:: doCommand(vector<string> info, int index) {
-    cout<<"in openDataServer"<<endl;
     int arg1, arg2, count;
     if (info.at(index + 2) == "\n") {
         count = 3;
@@ -26,12 +25,9 @@ int OpenServerCommand:: doCommand(vector<string> info, int index) {
         }
         arg1 = (int) s.evaluate(exp[0]).evaluate();
         arg2 = (int) s.evaluate(exp[1]).evaluate();
-        count = c.getExpressionLength(exp[0]) + c.getExpressionLength(exp[1]) +
-                c.countCommas(info, index) + 1;
+        count = c.getLength(info, index) + 1;
     }
     this->dataReaderServer.setPort(arg1);
     this->dataReaderServer.readFromClient();
-    cout<<"end openServerCommand"<<endl;
-    cout<<count<<endl;
     return count;
 }
