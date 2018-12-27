@@ -27,11 +27,11 @@ int Parser:: runner(vector<string> info, int index) {
 
         Command* c = commands.getMap().find(info[index])->second;
         if (commands.getMap().count(info[index]) == 1) {
-            if (commands.getMap().find(info[index])->first == "connect") {
+            /*if (commands.getMap().find(info[index])->first == "connect") {
                 cin.ignore();
 
                 cout<<"can connect"<<endl;
-            }
+            }*/
             cout<<"index:"<<index<<endl;
             index += c->doCommand(info, index + 1) + 1;
             cout<<"index:"<<index<<endl;

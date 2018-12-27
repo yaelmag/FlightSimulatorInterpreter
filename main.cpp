@@ -11,15 +11,15 @@
 #include "CheckExpressions.h"
 
 int main(int argc, char*argv[]) {
-    vector<string> vec;
+    vector<string> splitInfo;
     string fileName = argv[1];
     Lexer l = Lexer(fileName);
-    vec = l.splitScript();
+    splitInfo = l.splitScript();
     /*for (int i = 0; i < vec.size(); i++) {
         cout<< vec[i]<<" ";
     }*/
     Parser::getInstance();
-    Parser::getInstance()->runner(vec, 0);
+    Parser::getInstance()->runner(splitInfo, 0);
     /*CheckExpressions c;
     vector<string> v;
     v.push_back("5");
