@@ -82,14 +82,20 @@ Expression& ShuntingYard::evaluate(string tokens){
         else if(tokens[i] == ')') {
             while(!ops.empty() && ops.top() != '(')
             {
+                char op = ops.top();
+                ops.pop();
+
                 double val2 = values.top();
                 values.pop();
 
-                double val1 = values.top();
-                values.pop();
+                double val1;
+                if (ops.top() != '(') {
+                    val1 = values.top();
+                    values.pop();
+                } else {
+                    val1 = 0;
+                }
 
-                char op = ops.top();
-                ops.pop();
 
                 values.push(applyOp(val1, val2, op));
             }
@@ -138,8 +144,13 @@ Expression& ShuntingYard::evaluate(string tokens){
         double val2 = values.top();
         values.pop();
 
-        double val1 = values.top();
-        values.pop();
+        double val1;
+        if (values.empty()) {
+            val1 = 0;
+        }else {
+            val1 = values.top();
+            values.pop();
+        }
 
         char op = ops.top();
         ops.pop();
