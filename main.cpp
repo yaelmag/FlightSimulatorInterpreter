@@ -14,10 +14,10 @@ int main(int argc, char*argv[]) {
     string fileName = argv[1];
     Lexer l = Lexer(fileName);
     vec = l.splitScript();
-    /*for (int i = 0; i < vec.size(); i++) {
+    for (int i = 0; i < vec.size(); i++) {
         cout<< vec[i];
-    }*/
-    Parser::getInstance();
-    Parser::getInstance()->runner(vec, 0);
+    }
+    /*Parser::getInstance();
+    Parser::getInstance()->runner(vec, 0);*/
     return 0;
 }

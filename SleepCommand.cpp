@@ -32,6 +32,7 @@ int SleepCommand:: doCommand(vector<string> info, int index) {
         ShuntingYard s;
         value = (int)s.evaluate(exp[0]).evaluate();
     }
-    this_thread::sleep_for(chrono::milliseconds(value));
+    //this_thread::sleep_for(chrono::milliseconds(value))
+    sleep(value);
     return count;
 }
