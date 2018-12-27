@@ -26,6 +26,8 @@ public:
 
     void setPort(int p);
 
+    void readLineBeforeStart(int cliSock);
+
     void openSock();
 
     static void readData(int cliSock);
