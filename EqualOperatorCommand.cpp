@@ -15,8 +15,6 @@ int EqualOperatorCommand:: doCommand(vector<string> info, int index) {
     if (!symbolsMap->isSymbolExist(info[index - 2])) {
         __throw_invalid_argument("The var doesn't exist in the map");
     }
-    cout<<info[index]<<endl;
-    cout<<info[index + 1]<<endl;
     // if the var has bind, connect him to the simulator
     if (info[index] == "bind" && info[index + 2] == "\n") {
         if (info[index + 1][0] == '"') {
@@ -52,22 +50,11 @@ int EqualOperatorCommand:: doCommand(vector<string> info, int index) {
                 __throw_invalid_argument("There is to many arguments");
             } else {
                 value = s.evaluate(exp[0]).evaluate();
+                cout<<value<<endl;
                 // update the other var with this new value (in the SymbolTable map)
                 symbolsMap->setSymbol(info[index - 2], value);
-                bool flag = false;
-                for (int i = 0; i < exp[0].length(); i++) {
-                     if ((exp[0][i] != '+') && (exp[0][i] != '-') && (exp[0][i] != '/') &&
-                     (exp[0][i] != '*') && (exp[0][i] != '(') && (exp[0][i] != ')')) {
-                         if (!flag) {
-                             count++;
-                             flag = true;
-                         }
-                     } else {
-                         count++;
-                         flag = true;
-                     }
-                }
-                count = exp[0].length() + 1;
+                count = c.getExpressionLength(exp[0]);
+                count++;
             }
         }
         // if the var before the "=" is connected to the simulator,

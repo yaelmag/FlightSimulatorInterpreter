@@ -32,7 +32,7 @@ int ConnectCommand:: doCommand(vector<string> info, int index) {
         } catch (...) {
             throw "invalid type of argument (required int)";
         }
-        count = exp[0].length() + 2;
+        count = c.getExpressionLength(exp[0]) + 2;
     }
 
     //char* ipByName = strcpy((char*)malloc(strIp.length() + 1), strIp.c_str());

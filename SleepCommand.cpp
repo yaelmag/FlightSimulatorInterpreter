@@ -12,7 +12,7 @@ int SleepCommand:: doCommand(vector<string> info, int index) {
     int count = 0;
     int value;
     if (info[index + 1] == "\n") {
-        count = 3;
+        count = 2;
         // if the var in the map
         if (SymbolsTable::getInstance()->isSymbolExist(info[index])) {
             value = (int)SymbolsTable::getInstance()->getSymbolValue(info[index]);
@@ -26,7 +26,8 @@ int SleepCommand:: doCommand(vector<string> info, int index) {
         if (exp.size() != 1) {
             __throw_invalid_argument("There are too many arguments");
         }
-        count = 2 + exp[0].length();
+        count = check.getExpressionLength(exp[0]);
+        count++;
         ShuntingYard s;
         value = (int)s.evaluate(exp[0]).evaluate();
     }

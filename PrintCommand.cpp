@@ -18,7 +18,8 @@ int PrintCommand:: doCommand(vector<string> info, int index) {
             cout<<value<<endl;
           // if this is a string
         } else if (info[index].at(0) == '"') {
-            cout<<info[index]<<endl;
+            string messege = info[index].substr(1, info[index].length() - 2);
+            cout<<messege<<endl;
           // if this is a number
         } else {
             value = stod(info[index]);
@@ -30,7 +31,8 @@ int PrintCommand:: doCommand(vector<string> info, int index) {
         if (exp.size() != 1) {
             __throw_invalid_argument("There are too many arguments");
         }
-        count = 1 + exp[0].length();
+        count = check.getExpressionLength(exp[0]);
+        count++;
         ShuntingYard s;
         double num = s.evaluate(exp[0]).evaluate();
         cout<<num<<endl;

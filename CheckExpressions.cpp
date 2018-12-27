@@ -12,6 +12,9 @@ vector<string> CheckExpressions:: getExpressions(vector<string> info, int index)
     string num;
     int flag = 0;
     int i = 0;
+    if (info[index] == "-") {
+        flag = 1;
+    }
     while (info[index + i] != "\n") {
         // if there is a number
         if ((info[index + i] != "=") && (info[index + i] != "+") && (info[index + i] != "-") &&
@@ -96,4 +99,23 @@ bool CheckExpressions:: checkOperator(string s1, string s2) {
         return true;
     }
     return false;
+}
+
+int CheckExpressions:: getExpressionLength(string exp) {
+    int count = 0;
+    bool flag = false;
+    for (int i = 0; i < exp.length(); i++) {
+        if ((exp[i] != '+') && (exp[i] != '-') && (exp[i] != '/') &&
+            (exp[i] != '*') && (exp[i] != '(') && (exp[i] != ')')) {
+            if (!flag) {
+                count++;
+                flag = true;
+            }
+        } else {
+            count++;
+            flag = false;
+        }
+    }
+    return count;
+
 }
