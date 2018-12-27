@@ -5,7 +5,6 @@
 #include "Parser.h"
 #include "WhileCommand.h"
 #include "IfCommand.h"
-extern bool isConnect;
 
 Parser::Parser(CommandsMap &commands) {
     this->commands = commands;
@@ -29,11 +28,6 @@ int Parser:: runner(vector<string> info, int index) {
         Command* c = commands.getMap().find(info[index])->second;
         if (commands.getMap().count(info[index]) == 1) {
             if (commands.getMap().find(info[index])->first == "connect") {
-                cout<<"beforeLoop"<<endl;
-                while(!isConnect) {
-                    continue;
-                }
-                cout<<"afterLoop"<<endl;
                 cin.ignore();
                 cout<<"can connect"<<endl;
             }

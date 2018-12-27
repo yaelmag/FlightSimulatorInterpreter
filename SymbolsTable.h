@@ -61,10 +61,6 @@ public:
     void bindNewSymbolToExistSymbol(std::string newSymbol, std::string existSymbol);
     void printSymbols();
     bool isSymbolExist(std::string symbol);
-
-    //DataWriterClient *getClient() const;
-
-    //void setClient(DataWriterClient *client);
     ~SymbolsTable();
 };
 

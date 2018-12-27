@@ -5,6 +5,7 @@
 #include "SleepCommand.h"
 #include "PrintCommand.h"
 #include <unistd.h>
+#include <thread>
 
 SleepCommand:: SleepCommand() = default;
 
@@ -31,6 +32,6 @@ int SleepCommand:: doCommand(vector<string> info, int index) {
         ShuntingYard s;
         value = (int)s.evaluate(exp[0]).evaluate();
     }
-    sleep(value);
+    this_thread::sleep_for(chrono::milliseconds(value));
     return count;
 }

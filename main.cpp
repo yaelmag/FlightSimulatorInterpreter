@@ -9,7 +9,6 @@
 #include "Lexer.h"
 #include "Parser.h"
 
-bool isConnect = false;
 int main(int argc, char*argv[]) {
     vector<string> vec;
     string fileName = argv[1];

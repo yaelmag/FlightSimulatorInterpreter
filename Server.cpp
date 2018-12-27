@@ -13,7 +13,6 @@
 #include <string.h>
 #include <sys/socket.h>
 #include <sstream>
-extern bool isConnect;
 using namespace std;
 
 Server::Server(int port) {
@@ -68,7 +67,6 @@ void Server::openSock() {
         perror("ERROR on accept");
         exit(1);
     }
-    isConnect = true;
     cout << "finish accept" << endl;
 }
 
@@ -96,7 +94,7 @@ int Server::getCliSock() {
 
 void Server::updateTable(string massege) {
     vector<double> valuesFromSim = split(massege, ',');
-    //cout << "values" << endl;
+    //cout << "values:" << endl;
     //cout << SymbolsTable::getInstance() << endl;
     for (auto const& value : SymbolsTable::getInstance()->getSymbolsMap()) {
         //cout << "inloop1" << endl;
@@ -106,7 +104,7 @@ void Server::updateTable(string massege) {
             int i = indexInMap(path);
             if (i != -1) {
                 value.second->value = valuesFromSim.at(i);
-                //cout << var << "=" << valuesFromSim.at(i) << endl;
+                cout << var << "=" << valuesFromSim.at(i) << endl;
             }
         }
     }
@@ -116,6 +114,9 @@ void Server::updateTable(string massege) {
 int Server::indexInMap(string path) {
     vector<string> names = SymbolsTable::getInstance()->getPaths();
     for (int i = 0; i < names.size(); i++) {
+        if (path[0] == '\"') {
+            path = path.substr(1, path.length() - 2);
+        }
         if (names[i] == path) {
             return i;
         }

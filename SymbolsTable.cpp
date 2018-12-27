@@ -99,12 +99,12 @@ void SymbolsTable:: setSymbol(std::string symbol, double value){
         for(auto elem : symbolsMap) {
             // if there is an element in the map that bind to this symbol, update his value too
             if (elem.second->path == symbol) {
-                elem.second->value == value;
+                elem.second->value = value;
             }
             // if there is an element in the map that bind to the same path as the symbol
             // update his value too
             if (elem.second->path == symbolsMap[symbol]->path) {
-                elem.second->value == value;
+                elem.second->value = value;
             }
         }
 
@@ -152,7 +152,7 @@ std::map<std::string, SymbolData*> SymbolsTable::getSymbolsMap() {
     }
 }
 
-bool  SymbolsTable::isSymbolExist(std::string symbol){
+bool SymbolsTable::isSymbolExist(std::string symbol){
     return !(symbolsMap.find(symbol) == symbolsMap.end());
 }
 
@@ -160,18 +160,7 @@ std::vector<std::string> SymbolsTable::getPaths() {
     return paths;
 }
 
-/*
-DataWriterClient *SymbolsTable::getClient() const {
-    return client;
-}
-
-void SymbolsTable::setClient(DataWriterClient *client) {
-    SymbolsTable::client = client;
-}*/
-
-SymbolsTable::~SymbolsTable(){
-    //this->client->closeClient();
-    //delete this->client;
+SymbolsTable::~SymbolsTable() {
     for(auto elem : symbolsMap) {
         delete elem.second;
     }

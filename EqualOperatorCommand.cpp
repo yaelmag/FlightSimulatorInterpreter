@@ -33,8 +33,11 @@ int EqualOperatorCommand:: doCommand(vector<string> info, int index) {
         if (info[index + 1] == "\n") {
             // if the argument is var, take his value from the SymbolTable map
             if (symbolsMap->isSymbolExist(info[index])) {
+                cout<<"ok"<<endl;
                 value = symbolsMap->getSymbolValue(info[index]);
+                cout<<"ok2"<<endl;
             } else {
+                cout<<"nooo"<<endl;
                 value = stod(info[index]);
             }
             // update the other var with this new value (in the SymbolTable map)
