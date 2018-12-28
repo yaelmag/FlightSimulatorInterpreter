@@ -33,6 +33,7 @@ double ShuntingYard::applyOp(double a, double b, char op){
 // expression after evaluation.
 Expression& ShuntingYard::evaluate(string tokens){
     int i;
+    int opFlag = 1;
 
     // stack to store integer values.
     stack <double> values;
@@ -51,6 +52,7 @@ Expression& ShuntingYard::evaluate(string tokens){
             // brace, push it to 'ops'
         else if(tokens[i] == '('){
             ops.push(tokens[i]);
+            opFlag = 1;
         }
 
             // Current token is a number, push
@@ -74,6 +76,7 @@ Expression& ShuntingYard::evaluate(string tokens){
                 i++;
             }
             i--;
+            opFlag = 0;
             values.push(val);
         }
 
@@ -89,17 +92,18 @@ Expression& ShuntingYard::evaluate(string tokens){
                 values.pop();
 
                 double val1;
-                if (ops.top() != '(') {
+                //if (ops.top() != '(') {
                     val1 = values.top();
                     values.pop();
-                } else {
-                    val1 = 0;
-                }
+                //} else {
+                //    val1 = 0;
+                //}
 
 
                 values.push(applyOp(val1, val2, op));
             }
 
+            opFlag = 1;
             // pop opening brace.
             ops.pop();
         }
@@ -130,6 +134,10 @@ Expression& ShuntingYard::evaluate(string tokens){
                 }
 
                 values.push(applyOp(val1, val2, op));
+            }
+
+            if (opFlag == 1 && tokens[i] == '-') {
+                values.push(0);
             }
 
             // Push current token to 'ops'.

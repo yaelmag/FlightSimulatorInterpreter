@@ -33,6 +33,6 @@ int SleepCommand:: doCommand(vector<string> info, int index) {
         value = (int)s.evaluate(exp[0]).evaluate();
     }
     //this_thread::sleep_for(chrono::milliseconds(value));
-    usleep(value);
+    usleep(value * 1000);
     return count;
 }
