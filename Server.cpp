@@ -80,19 +80,30 @@ void Server::readLineBeforeStart(int cliSock) {
 }
 
 void Server:: readData(int cliSock) {
-    char buffer[BUFFER_SIZE];
+    char buffer[BUFFER_SIZE], c;
+    string msg;
     int n;
     while (true) {
+        msg = "";
         // If connection is established then start communicating *//*
-        bzero(buffer, (BUFFER_SIZE - 1));
-        n = read(cliSock, buffer, (BUFFER_SIZE - 1));
+        bzero(buffer, (BUFFER_SIZE));
+        n = read(cliSock, &c, 1);
+        // n = read(cliSock, buffer, (BUFFER_SIZE - 1));
+        while (c != '\n') {
+            if (n < 0) {
+                perror("ERROR reading from socket");
+                exit(1);
+            }
+            msg += c;
+            n = read(cliSock, &c, 1);
+        }
 
-        if (n < 0) {
+        /*if (n < 0) {
             perror("ERROR reading from socket");
             exit(1);
-        }
-        //cout << "readdata" << endl;
-        updateTable(buffer);
+        }*/
+        //updateTable(buffer);
+        updateTable(msg);
         //printf("Here is the message: %s\n", buffer);
     }
 }
@@ -103,19 +114,16 @@ int Server::getCliSock() {
 
 void Server::updateTable(string massege) {
     vector<double> valuesFromSim = split(massege, ',');
-    //cout << "values:" << endl;
-    //cout << SymbolsTable::getInstance() << endl;
     for (auto const& value : SymbolsTable::getInstance()->getSymbolsMap()) {
-        //cout << "inloop1" << endl;
         string var = value.first;
         string path = value.second->path;
-        if (var != path) {
+        //if (var != path) {
             int i = indexInMap(path);
             if (i != -1) {
                 value.second->value = valuesFromSim.at(i);
                 /*cout << var << "=" << valuesFromSim.at(i) << endl;*/
             }
-        }
+        //}
     }
     //cout << "afterloop" << endl;
 }
@@ -142,4 +150,9 @@ vector<double > Server::split(string info, char divide) {
         splitLine.push_back(stod(part));
     }
     return splitLine;
+}
+
+
+void Server:: closeSocket() {
+    close(this->cliSockfd);
 }

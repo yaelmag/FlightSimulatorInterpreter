@@ -6,8 +6,6 @@
 #define PROJECT1_OPENSERVERCOMMAND_H
 
 #include "Command.h"
-#include "VarBindMap.h"
-#include "SymbolTable.h"
 #include "DataReaderServer.h"
 
 class OpenServerCommand : public Command{

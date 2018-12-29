@@ -5,8 +5,6 @@
 #ifndef PROJECT1_EQUALOPERATORCOMMAND_H
 #define PROJECT1_EQUALOPERATORCOMMAND_H
 #include "Command.h"
-#include "VarBindMap.h"
-#include "SymbolTable.h"
 
 class EqualOperatorCommand : public Command {
 public:

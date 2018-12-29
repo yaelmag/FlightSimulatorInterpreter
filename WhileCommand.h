@@ -12,7 +12,6 @@ public:
     WhileCommand(vector<string> boolExp);
     int doCommand(vector<string> info, int index);
 
-
 };
 
 

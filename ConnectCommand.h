@@ -5,8 +5,6 @@
 #ifndef PROJECT1_CONNECTCOMMAND_H
 #define PROJECT1_CONNECTCOMMAND_H
 #include "Command.h"
-#include "VarBindMap.h"
-#include "SymbolTable.h"
 
 class ConnectCommand : public Command {
 public:

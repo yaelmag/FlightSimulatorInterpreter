@@ -5,9 +5,9 @@
 #ifndef PROJECT1_CHECKEXPRESSIONS_H
 #define PROJECT1_CHECKEXPRESSIONS_H
 
-#include "SymbolTable.h"
-#include <string.h>
+#include <string>
 #include <vector>
+using namespace std;
 
 class CheckExpressions {
 

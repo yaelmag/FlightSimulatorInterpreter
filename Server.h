@@ -33,6 +33,8 @@ public:
     static void readData(int cliSock);
 
     int getCliSock();
+
+    void closeSocket();
 };
 
 #endif //PROJECT1_SERVER_H

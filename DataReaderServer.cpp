@@ -14,7 +14,7 @@
 
 using namespace std;
 
-DataReaderServer::DataReaderServer(int port) {
+DataReaderServer::DataReaderServer(int port){
     this->port = port;
     server = new Server(port);
 }
@@ -31,4 +31,11 @@ void DataReaderServer::setPort(int p) {
     //cout << p << endl;
     this->port = p;
     //cout << this->port << endl;
+}
+
+DataReaderServer:: ~DataReaderServer() {
+    if (this->server != nullptr) {
+        this->server->closeSocket();
+        delete(server);
+    }
 }

@@ -11,18 +11,22 @@
 #include "CommandsMap.h"
 #include "OpenServerCommand.h"
 #include "ConnectCommand.h"
-#include "VarBindMap.h"
 
 using namespace std;
 
 class Parser {
-CommandsMap commands;
+map<string, Command*> commands;
+vector<Command*> ifWhileCommands;
+//CommandsMap commands;
 static Parser *instance;
     bool isBoolOperator(string boolOperator);
 public:
     static Parser *getInstance();
-    Parser(CommandsMap &commands);
+    static void destroyParser();
+
+    Parser(/*CommandsMap &commands*/);
     int runner(vector<string> info, int index);
+    ~Parser();
 };
 
 

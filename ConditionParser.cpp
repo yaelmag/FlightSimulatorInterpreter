@@ -55,3 +55,9 @@ BooleanExpression* ConditionParser:: createCondition(vector<string> boolExp) {
         return  new NotEqual(exps[0], exps[1]);
     }
 }
+
+ConditionParser:: ~ConditionParser() {
+    if (this->condition != nullptr) {
+        delete(this->condition);
+    }
+}

@@ -13,8 +13,6 @@
 #include "DefineVarCommand.h"
 #include "EqualOperatorCommand.h"
 #include "Expression.h"
-#include "VarBindMap.h"
-#include "SymbolTable.h"
 #include "PrintCommand.h"
 #include "SleepCommand.h"
 

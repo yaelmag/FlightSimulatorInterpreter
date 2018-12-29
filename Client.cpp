@@ -80,3 +80,11 @@ void Client::destroyClient() {
     }
     instance = nullptr;
 }
+
+void Client::closeSocket() {
+    close(this->sockfd);
+}
+
+Client::~Client() {
+
+}

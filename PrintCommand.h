@@ -4,7 +4,6 @@
 
 #ifndef PROJECT1_PRINTCOMMAND_H
 #define PROJECT1_PRINTCOMMAND_H
-#include "SymbolTable.h"
 #include "Command.h"
 
 class PrintCommand : public Command {

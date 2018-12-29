@@ -5,17 +5,30 @@
 #include "Parser.h"
 #include "WhileCommand.h"
 #include "IfCommand.h"
+#include "SymbolsTable.h"
+#include "Client.h"
 
-Parser::Parser(CommandsMap &commands) {
-    this->commands = commands;
+Parser::Parser(/*CommandsMap &commands*/) {
+    OpenServerCommand* openDataServer = new OpenServerCommand();
+    commands.insert(pair<string, Command*>("openDataServer", openDataServer));
+    ConnectCommand* connect = new ConnectCommand();
+    commands.insert(pair<string, Command*>("connect", connect));
+    DefineVarCommand* var = new DefineVarCommand();
+    commands.insert(pair<string, Command*>("var", var));
+    EqualOperatorCommand* equal = new EqualOperatorCommand();
+    commands.insert(pair<string, Command*>("=", equal));
+    PrintCommand* print = new PrintCommand();
+    commands.insert(pair<string, Command*>("print", print));
+    SleepCommand* sleep = new SleepCommand();
+    commands.insert(pair<string, Command*>("sleep", sleep));
 }
 
-Parser *Parser::instance = nullptr;
+Parser *Parser:: instance = nullptr;
 
-Parser *Parser::getInstance() {
+Parser *Parser:: getInstance() {
     if (instance == nullptr) {
-        CommandsMap commands = CommandsMap();
-        instance = new Parser(commands);
+        //CommandsMap commands = CommandsMap();
+        instance = new Parser(/*commands*/);
     }
     return instance;
 }
@@ -24,9 +37,11 @@ int Parser:: runner(vector<string> info, int index) {
     while (index < info.size() - 2) {
         cout<<"command: "<< info[index]<<endl;
         cout<<"after: "<< info[index + 1]<<endl;
-        Command* c = commands.getMap().find(info[index])->second;
-        if (commands.getMap().count(info[index]) == 1) {
-            if (commands.getMap().find(info[index])->first == "connect") {
+
+        Command* c;
+        if (commands.count(info[index]) == 1) {
+            c = commands.find(info[index])->second;
+            if (commands.find(info[index])->first == "connect") {
                 cin.ignore();
 
                 cout<<"can connect"<<endl;
@@ -64,18 +79,21 @@ int Parser:: runner(vector<string> info, int index) {
             // if its while command
             if (conditionType == "while") {
                 c = new WhileCommand(boolExp);
+                this->ifWhileCommands.push_back(c);
                 index = c->doCommand(info, index);
               // if its if command
             } else if (conditionType == "if") {
                 c = new IfCommand(boolExp);
+                this->ifWhileCommands.push_back(c);
                 index = c->doCommand(info, index);
             }
+
           // if we get to the end of WhileLoop/If
         } else if (info[index] == "}") {
             return index;
            // if we get to EqualCommand
         } else if (info[index + 1] == "=") {
-            c = commands.getMap().find(info[index + 1])->second;
+            c = commands.find(info[index + 1])->second;
             index += c->doCommand(info, index + 2) + 2;
         }
     }
@@ -88,4 +106,23 @@ bool Parser:: isBoolOperator(string boolOperator) {
         return true;
     }
     return false;
+}
+
+
+void Parser::destroyParser() {
+    if (instance != nullptr) {
+        delete instance;
+    }
+    instance = nullptr;
+}
+
+
+Parser::~Parser() {
+    for (auto const& command : this->commands) {
+        delete(command.second);
+    }
+    for (auto const& ifWhile : this->ifWhileCommands) {
+        delete(ifWhile);
+    }
+
 }

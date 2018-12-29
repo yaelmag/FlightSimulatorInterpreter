@@ -21,6 +21,7 @@ public:
     BooleanExpression* condition;
     ConditionParser(vector<string> boolExp);
     int doCommand(vector<string> info, int index) override = 0;
+    ~ConditionParser();
 };
 
 

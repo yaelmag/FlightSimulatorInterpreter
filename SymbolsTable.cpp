@@ -162,7 +162,7 @@ std::vector<std::string> SymbolsTable::getPaths() {
 
 SymbolsTable::~SymbolsTable() {
     for(auto elem : symbolsMap) {
-        delete elem.second;
+        delete(elem.second);
     }
     symbolsMap.clear();
 }

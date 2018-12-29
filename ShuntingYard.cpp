@@ -21,10 +21,10 @@ double ShuntingYard::applyOp(double a, double b, char op){
     Expression* aExp = new Num(a);
     Expression* bExp = new Num(b);
     switch(op){
-        case '+': return (new Plus(aExp, bExp))->evaluate();
-        case '-': return (new Minus(aExp, bExp))->evaluate();
-        case '*': return (new Mult(aExp, bExp))->evaluate();
-        case '/': return (new Div(aExp, bExp))->evaluate();
+        case '+': return (Plus(aExp, bExp)).evaluate();
+        case '-': return (Minus(aExp, bExp)).evaluate();
+        case '*': return (Mult(aExp, bExp)).evaluate();
+        case '/': return (Div(aExp, bExp)).evaluate();
     }
     return 0;
 }

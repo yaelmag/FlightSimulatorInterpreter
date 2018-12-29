@@ -24,13 +24,14 @@ class Client {
     Client() = default;
 public:
     static Client *getInstance();
+    static void destroyClient();
+
     void setPort(int port);
     void setIp(string ipByName);
-    static void destroyClient();
     void openSocket();
     void writeData(std::string massege, double value);
-    //TODO destructor.
-    //~Client();
+    void closeSocket();
+    ~Client();
 };
 
 
