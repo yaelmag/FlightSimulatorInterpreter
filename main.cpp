@@ -19,6 +19,7 @@ int main(int argc, char*argv[]) {
     Parser::getInstance()->runner(splitInfo, 0);
     Client::getInstance()->closeSocket();
     Client::destroyClient();
+    Server::destroyServer();
     Parser::destroyParser();
     SymbolsTable::destroyInstance();
     return 0;

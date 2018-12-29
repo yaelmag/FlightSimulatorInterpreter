@@ -31,7 +31,7 @@ double ShuntingYard::applyOp(double a, double b, char op){
 
 // Function that returns value of
 // expression after evaluation.
-Expression& ShuntingYard::evaluate(string tokens){
+Expression* ShuntingYard::evaluate(string tokens){
     int i;
     int opFlag = 1;
 
@@ -41,7 +41,7 @@ Expression& ShuntingYard::evaluate(string tokens){
     // stack to store operators.
     stack <char> ops;
 
-    for(i = 0; i < tokens.length(); i++){
+    for(i = 0; (unsigned int)i < tokens.length(); i++){
 
         // Current token is a whitespace,
         // skip it.
@@ -64,7 +64,7 @@ Expression& ShuntingYard::evaluate(string tokens){
 
             // There may be more than one
             // digits in number.
-            while((i < tokens.length()) && ((isdigit(tokens[i])) || (tokens[i] == '.'))) {
+            while(((unsigned int)i < tokens.length()) && ((isdigit(tokens[i])) || (tokens[i] == '.'))) {
                 if (tokens[i] == '.') {
                     isFrac = 1;
                 }else if (isFrac) {
@@ -167,5 +167,10 @@ Expression& ShuntingYard::evaluate(string tokens){
     }
 
     // Top of 'values' contains result, return it.
-    return *(new Num(values.top()));
+    this->exp = new Num(values.top());
+    return exp;
+}
+
+ShuntingYard::~ShuntingYard() {
+    delete this->exp;
 }

@@ -17,5 +17,7 @@ class Command {
 
 public:
     virtual int doCommand(vector<string> info, int index) = 0;
+
+    virtual ~Command() = default;
 };
 #endif //PROJECT1_COMMAND_H

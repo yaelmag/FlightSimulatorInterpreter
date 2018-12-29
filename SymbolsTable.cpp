@@ -5,29 +5,29 @@
 #include "SymbolsTable.h"
 
 std::vector<std::string> SymbolsTable::paths({
-                "/instrumentation/airspeed-indicator/indicated-speed-kt",
-                "/instrumentation/altimeter/indicated-altitude-ft",
-                "/instrumentation/altimeter/pressure-alt-ft",
-                "/instrumentation/attitude-indicator/indicated-pitch-deg",
-                "/instrumentation/attitude-indicator/indicated-roll-deg",
-                "/instrumentation/attitude-indicator/internal-pitch-deg",
-                "/instrumentation/attitude-indicator/internal-roll-deg",
-                "/instrumentation/encoder/indicated-altitude-ft",
-                "/instrumentation/encoder/pressure-alt-ft",
-                "/instrumentation/gps/indicated-altitude-ft",
-                "/instrumentation/gps/indicated-ground-speed-kt",
-                "/instrumentation/gps/indicated-vertical-speed",
-                "/instrumentation/heading-indicator/indicated-heading-deg",
-                "/instrumentation/magnetic-compass/indicated-heading-deg",
-                "/instrumentation/slip-skid-ball/indicated-slip-skid",
-                "/instrumentation/turn-indicator/indicated-turn-rate",
-                "/instrumentation/vertical-speed-indicator/indicated-speed-fpm",
-                "/controls/flight/aileron",
-                "/controls/flight/elevator",
-                "/controls/flight/rudder",
-                "/controls/flight/flaps",
-                "/controls/engines/current-engine/throttle",
-                "/engines/engine/rpm"});
+                                                     "/instrumentation/airspeed-indicator/indicated-speed-kt",
+                                                     "/instrumentation/altimeter/indicated-altitude-ft",
+                                                     "/instrumentation/altimeter/pressure-alt-ft",
+                                                     "/instrumentation/attitude-indicator/indicated-pitch-deg",
+                                                     "/instrumentation/attitude-indicator/indicated-roll-deg",
+                                                     "/instrumentation/attitude-indicator/internal-pitch-deg",
+                                                     "/instrumentation/attitude-indicator/internal-roll-deg",
+                                                     "/instrumentation/encoder/indicated-altitude-ft",
+                                                     "/instrumentation/encoder/pressure-alt-ft",
+                                                     "/instrumentation/gps/indicated-altitude-ft",
+                                                     "/instrumentation/gps/indicated-ground-speed-kt",
+                                                     "/instrumentation/gps/indicated-vertical-speed",
+                                                     "/instrumentation/heading-indicator/indicated-heading-deg",
+                                                     "/instrumentation/magnetic-compass/indicated-heading-deg",
+                                                     "/instrumentation/slip-skid-ball/indicated-slip-skid",
+                                                     "/instrumentation/turn-indicator/indicated-turn-rate",
+                                                     "/instrumentation/vertical-speed-indicator/indicated-speed-fpm",
+                                                     "/controls/flight/aileron",
+                                                     "/controls/flight/elevator",
+                                                     "/controls/flight/rudder",
+                                                     "/controls/flight/flaps",
+                                                     "/controls/engines/current-engine/throttle",
+                                                     "/engines/engine/rpm"});
 
 
 /* Null, because instance will be initialized on demand. */
@@ -35,8 +35,7 @@ SymbolsTable *SymbolsTable::instance = nullptr;
 
 SymbolsTable *SymbolsTable::getInstance() {
     //singleton instance:
-    if (instance == nullptr)
-    {
+    if (instance == nullptr) {
         instance = new SymbolsTable();
     }
     return instance;
@@ -44,19 +43,17 @@ SymbolsTable *SymbolsTable::getInstance() {
 
 void SymbolsTable::destroyInstance() {
     //delete singleton instance
-    if(instance != nullptr)
-    {
+    if (instance != nullptr) {
         delete instance;
         instance = nullptr;
     }
 }
 
 
-
-SymbolsTable::SymbolsTable(){
+SymbolsTable::SymbolsTable() {
 
     //init the default symbols of the simulator
-    for (int i = 0; i < SymbolsTable::paths.size(); ++i) {
+    for (int i = 0; (unsigned int)i < SymbolsTable::paths.size(); ++i) {
         //the symbol name as exist in the simulator paths
         std::string symbolName = SymbolsTable::paths[i];
         setSymbol(symbolName, 0, symbolName);
@@ -71,9 +68,9 @@ SymbolsTable::SymbolsTable(){
  * description : gets the symbol name, the value, and the path to bind to in the simulator
  *
  */
-void SymbolsTable:: setSymbol(string symbol, double value, string path){
+void SymbolsTable::setSymbol(string symbol, double value, string path) {
     mtx1.lock();
-    if(isSymbolExist(symbol)) {
+    if (isSymbolExist(symbol)) {
         symbolsMap.at(symbol)->value = value;
     } else {
         symbolsMap[symbol] = new SymbolData(value, path);
@@ -81,22 +78,30 @@ void SymbolsTable:: setSymbol(string symbol, double value, string path){
     mtx1.unlock();
 }
 
-void SymbolsTable:: setSymbol(string symbol, std::string path) {
+void SymbolsTable::setSymbol(string symbol, std::string path) {
     mtx2.lock();
-    if(isSymbolExist(symbol)){
+    if (isSymbolExist(symbol)) {
         symbolsMap[symbol]->path = path;
+        // gilad start
+        if (path[0] == '\"') {
+            path = path.substr(1, path.length() - 2);
+        }
+        if (isSymbolExist(path)) {
+            symbolsMap[symbol]->value = symbolsMap[path]->value;
+        }
+        // gilad end
     } else {
         symbolsMap[symbol] = new SymbolData(0, path);
     }
     mtx2.unlock();
 }
 
-void SymbolsTable:: setSymbol(std::string symbol, double value){
+void SymbolsTable::setSymbol(std::string symbol, double value) {
     mtx3.lock();
-    if(isSymbolExist(symbol)) {
+    if (isSymbolExist(symbol)) {
         symbolsMap[symbol]->value = value;
         // goes over all the elements(symbols) in the map
-        for(auto elem : symbolsMap) {
+        for (auto elem : symbolsMap) {
             // if there is an element in the map that bind to this symbol, update his value too
             if (elem.second->path == symbol) {
                 elem.second->value = value;
@@ -109,50 +114,47 @@ void SymbolsTable:: setSymbol(std::string symbol, double value){
         }
 
     } else {
-        symbolsMap[symbol] = new SymbolData(value,"");
+        symbolsMap[symbol] = new SymbolData(value, "");
     }
     mtx3.unlock();
 }
 
-double SymbolsTable::getSymbolValue(std::string symbol){
+double SymbolsTable::getSymbolValue(std::string symbol) {
     return symbolsMap.at(symbol)->value;
 }
 
-string SymbolsTable::getSymbolPath(std::string symbol){
+string SymbolsTable::getSymbolPath(std::string symbol) {
     return symbolsMap.at(symbol)->path;
 }
 
 void SymbolsTable::bindNewSymbolToExistSymbol(std::string newSymbol, std::string existSymbol) {
     mtx4.lock();
-    if(isSymbolExist(existSymbol)) {
+    if (isSymbolExist(existSymbol)) {
         if (!symbolsMap[existSymbol]->path.empty()) {
             symbolsMap[newSymbol] = symbolsMap[existSymbol];
         } else {
             symbolsMap[newSymbol]->path = existSymbol;
             symbolsMap[newSymbol]->value = symbolsMap[existSymbol]->value;
         }
-    }
-    else {
+    } else {
         //create and bind new symbol to path
-        setSymbol(newSymbol,0,existSymbol);
+        setSymbol(newSymbol, 0, existSymbol);
     }
     mtx4.unlock();
 }
 
-void SymbolsTable::printSymbols(){
-    for(auto elem : symbolsMap) {
+void SymbolsTable::printSymbols() {
+    for (auto elem : symbolsMap) {
         std::cout << elem.first << ": " << elem.second->value << "  ";
     }
     std::cout << std::endl;
 }
 
-std::map<std::string, SymbolData*> SymbolsTable::getSymbolsMap() {
-    if (instance != nullptr) {
-        return symbolsMap;
-    }
+std::map<std::string, SymbolData *> SymbolsTable::getSymbolsMap() {
+    return symbolsMap;
 }
 
-bool SymbolsTable::isSymbolExist(std::string symbol){
+bool SymbolsTable::isSymbolExist(std::string symbol) {
     return !(symbolsMap.find(symbol) == symbolsMap.end());
 }
 
@@ -161,8 +163,8 @@ std::vector<std::string> SymbolsTable::getPaths() {
 }
 
 SymbolsTable::~SymbolsTable() {
-    for(auto elem : symbolsMap) {
-        delete(elem.second);
+    for (auto elem : symbolsMap) {
+        delete elem.second;
     }
     symbolsMap.clear();
 }

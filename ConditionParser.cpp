@@ -26,13 +26,13 @@ vector<Expression*> ConditionParser:: createExpressions(vector<string> boolExp) 
     if (SymbolsTable::getInstance()->isSymbolExist(boolExp[0])) {
         leftExp = new Var(boolExp[0]);
     } else {
-        leftExp = new Num(s.evaluate(boolExp[0]).evaluate());
+        leftExp = new Num(s.evaluate(boolExp[0])->evaluate());
     }
 
     if (SymbolsTable::getInstance()->isSymbolExist(boolExp[2])) {
         rightExp = new Var(boolExp[2]);
     } else {
-        rightExp = new Num(s.evaluate(boolExp[2]).evaluate());
+        rightExp = new Num(s.evaluate(boolExp[2])->evaluate());
     }
     v.push_back(leftExp);
     v.push_back(rightExp);
@@ -54,6 +54,7 @@ BooleanExpression* ConditionParser:: createCondition(vector<string> boolExp) {
     } else if (boolExp[1] == "!=") {
         return  new NotEqual(exps[0], exps[1]);
     }
+    return nullptr;
 }
 
 ConditionParser:: ~ConditionParser() {

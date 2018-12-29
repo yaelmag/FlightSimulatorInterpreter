@@ -34,7 +34,7 @@ int PrintCommand:: doCommand(vector<string> info, int index) {
         count = check.getLength(info, index);
         count++;
         ShuntingYard s;
-        double num = s.evaluate(exp[0]).evaluate();
+        double num = s.evaluate(exp[0])->evaluate();
         cout<<num<<endl;
     }
     return count;

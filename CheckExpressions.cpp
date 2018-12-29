@@ -118,7 +118,7 @@ bool CheckExpressions:: checkOperator(string s1, string s2) {
 int CheckExpressions:: getExpressionLength(string exp) {
     int count = 0;
     bool flag = false;
-    for (int i = 0; i < exp.length(); i++) {
+    for (int i = 0; (unsigned int)i < exp.length(); i++) {
         if ((exp[i] != '+') && (exp[i] != '-') && (exp[i] != '/') &&
             (exp[i] != '*') && (exp[i] != '(') && (exp[i] != ')')) {
             if (!flag) {

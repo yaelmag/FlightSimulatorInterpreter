@@ -45,7 +45,7 @@ int EqualOperatorCommand:: doCommand(vector<string> info, int index) {
             if (exp.size() != 1) {
                 __throw_invalid_argument("There is to many arguments");
             } else {
-                value = s.evaluate(exp[0]).evaluate() + c.countCommas(info, index);
+                value = s.evaluate(exp[0])->evaluate() + c.countCommas(info, index);
                 // update the other var with this new value (in the SymbolTable map)
                 symbolsMap->setSymbol(info[index - 2], value);
                 count = c.getLength(info, index);

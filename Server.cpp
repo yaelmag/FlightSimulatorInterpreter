@@ -13,10 +13,23 @@
 #include <string.h>
 #include <sys/socket.h>
 #include <sstream>
+
 using namespace std;
 
-Server::Server(int port) {
-    this->port = port;
+Server* Server::instance = nullptr;
+
+Server *Server::getInstance() {
+    if (instance == nullptr) {
+        instance = new Server();
+    }
+    return instance;
+}
+void Server::destroyServer() {
+    instance->closeSocket();
+    if (instance != nullptr) {
+        delete instance;
+    }
+    instance = nullptr;
 }
 
 void Server::setPort(int p) {
@@ -79,7 +92,7 @@ void Server::readLineBeforeStart(int cliSock) {
     }
 }
 
-void Server:: readData(int cliSock) {
+void Server::readData(int cliSock) {
     char buffer[BUFFER_SIZE], c;
     string msg;
     int n;
@@ -114,15 +127,15 @@ int Server::getCliSock() {
 
 void Server::updateTable(string massege) {
     vector<double> valuesFromSim = split(massege, ',');
-    for (auto const& value : SymbolsTable::getInstance()->getSymbolsMap()) {
+    for (auto const &value : SymbolsTable::getInstance()->getSymbolsMap()) {
         string var = value.first;
         string path = value.second->path;
         //if (var != path) {
-            int i = indexInMap(path);
-            if (i != -1) {
-                value.second->value = valuesFromSim.at(i);
-                /*cout << var << "=" << valuesFromSim.at(i) << endl;*/
-            }
+        int i = indexInMap(path);
+        if (i != -1) {
+            value.second->value = valuesFromSim.at(i);
+            /*cout << var << "=" << valuesFromSim.at(i) << endl;*/
+        }
         //}
     }
     //cout << "afterloop" << endl;
@@ -130,7 +143,7 @@ void Server::updateTable(string massege) {
 
 int Server::indexInMap(string path) {
     vector<string> names = SymbolsTable::getInstance()->getPaths();
-    for (int i = 0; i < names.size(); i++) {
+    for (int i = 0; (unsigned int)i < names.size(); i++) {
         if (path[0] == '\"') {
             path = path.substr(1, path.length() - 2);
         }
@@ -141,7 +154,7 @@ int Server::indexInMap(string path) {
     return -1;
 }
 
-vector<double > Server::split(string info, char divide) {
+vector<double> Server::split(string info, char divide) {
     stringstream s(info);
     string part;
     vector<double> splitLine;
@@ -153,6 +166,7 @@ vector<double > Server::split(string info, char divide) {
 }
 
 
-void Server:: closeSocket() {
+void Server::closeSocket() {
     close(this->cliSockfd);
+    cout << "closed";
 }

@@ -44,7 +44,7 @@ vector<string> Lexer:: splitScript() {
     string word;
 
     // go over all the script and split him to words
-    for (int i = 0; i < script.length(); i++) {
+    for (int i = 0; (unsigned int)i < script.length(); i++) {
         if (check == 0) {
             // add the current 'word' and ',' || '\n' to the vector
             if ((script[i] == ',') || (script[i] == '\n')) {

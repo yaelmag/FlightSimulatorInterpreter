@@ -15,6 +15,8 @@ public:
     virtual string toString() override = 0;
 
     virtual double evaluate() override = 0;
+
+    virtual ~BooleanExpression() = default;
 };
 
 

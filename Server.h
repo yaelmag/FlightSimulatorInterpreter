@@ -14,18 +14,19 @@
 using namespace std;
 
 class Server {
+    static Server* instance;
     int cliSockfd;
     int serverSockfd, port;
     map<string, SymbolData*> symbolsMap = SymbolsTable::getInstance()->getSymbolsMap();
-
+    Server() = default;
     static void updateTable(string massege);
     static int indexInMap(string path);
     static vector<double > split(string info, char divide);
 public:
-    Server(int port);
-
+    //Server(int port);
+    static Server *getInstance();
+    static void destroyServer();
     void setPort(int p);
-
     void readLineBeforeStart(int cliSock);
 
     void openSock();
@@ -35,6 +36,7 @@ public:
     int getCliSock();
 
     void closeSocket();
+    ~Server() = default;
 };
 
 #endif //PROJECT1_SERVER_H

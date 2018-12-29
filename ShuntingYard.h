@@ -16,11 +16,12 @@
 #include "Num.h"
 
 class ShuntingYard {
+    Expression* exp;
 public:
     int precedence(char op);
     double applyOp(double a, double b, char op);
-    Expression& evaluate(string tokens);
-    void shuntYard();
+    Expression* evaluate(string tokens);
+    ~ShuntingYard();
 };
 
 #endif //PROJECT1_SHUNTINGYARD_H

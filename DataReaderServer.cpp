@@ -16,14 +16,13 @@ using namespace std;
 
 DataReaderServer::DataReaderServer(int port){
     this->port = port;
-    server = new Server(port);
 }
 
 void DataReaderServer::readFromClient() {
-    this->server->setPort(this->port);
-    server->openSock();
+    Server::getInstance()->setPort(this->port);
+    Server::getInstance()->openSock();
     //server->readLineBeforeStart(server->getCliSock());
-    thread t (&server->readData, server->getCliSock());
+    thread t (Server::getInstance()->readData, Server::getInstance()->getCliSock());
     t.detach();
 }
 
@@ -33,9 +32,10 @@ void DataReaderServer::setPort(int p) {
     //cout << this->port << endl;
 }
 
+/*
 DataReaderServer:: ~DataReaderServer() {
     if (this->server != nullptr) {
         this->server->closeSocket();
         delete(server);
     }
-}
+}*/

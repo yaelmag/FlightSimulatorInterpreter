@@ -20,7 +20,7 @@ public:
     virtual string toString() {
         return to_string(this->evaluate());
     }
-    ~BinaryExpression() {
+    virtual ~BinaryExpression() {
         delete(leftE);
         delete(rightE);
     }

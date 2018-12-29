@@ -34,10 +34,7 @@ Parser *Parser:: getInstance() {
 }
 
 int Parser:: runner(vector<string> info, int index) {
-    while (index < info.size() - 2) {
-        cout<<"command: "<< info[index]<<endl;
-        cout<<"after: "<< info[index + 1]<<endl;
-
+    while ((unsigned int)index < info.size() - 2) {
         Command* c;
         if (commands.count(info[index]) == 1) {
             c = commands.find(info[index])->second;

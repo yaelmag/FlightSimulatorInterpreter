@@ -6,12 +6,11 @@
 #include "OpenServerCommand.h"
 
 int OpenServerCommand:: doCommand(vector<string> info, int index) {
-    int arg1, arg2, count;
+    int arg1, count;
     if (info.at(index + 2) == "\n") {
         count = 3;
         try {
             arg1 = stoi(info.at(index));
-            arg2 = stoi(info.at(index+1));
         } catch (...) {
             __throw_invalid_argument("invalid type of argument (required int)");
         }
@@ -23,8 +22,7 @@ int OpenServerCommand:: doCommand(vector<string> info, int index) {
         if (exp.size() != 2) {
             __throw_invalid_argument("The number of arguments invalid");
         }
-        arg1 = (int) s.evaluate(exp[0]).evaluate();
-        arg2 = (int) s.evaluate(exp[1]).evaluate();
+        arg1 = (int) s.evaluate(exp[0])->evaluate();
         count = c.getLength(info, index) + 1;
     }
     this->dataReaderServer.setPort(arg1);

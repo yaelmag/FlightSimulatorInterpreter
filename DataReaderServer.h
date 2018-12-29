@@ -9,12 +9,11 @@
 
 class DataReaderServer {
     int port;
-    Server *server;
 public:
     DataReaderServer(int port);
     void readFromClient();
     void setPort(int p);
-    ~DataReaderServer();
+    ~DataReaderServer() = default;
 };
 
 

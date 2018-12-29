@@ -16,6 +16,7 @@ public:
     virtual string toString() {
         return "default string";
     }
+    virtual ~Expression() = default;
 };
 
 #endif //PROJECT1_EXPRESSION_H

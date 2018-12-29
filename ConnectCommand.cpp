@@ -29,7 +29,7 @@ int ConnectCommand:: doCommand(vector<string> info, int index) {
         }
         strIp = info.at(index);
         try {
-            port = (int)s.evaluate(exp[0]).evaluate();
+            port = (int)s.evaluate(exp[0])->evaluate();
         } catch (...) {
             throw "invalid type of argument (required int)";
         }
