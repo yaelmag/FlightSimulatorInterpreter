@@ -1,3 +1,3 @@
 # project1 - Flight Simulator
 
-create interpreter for special commands and send instructions to the flight simulator.
+Create interpreter (CLI) and send the commands to the flight simulator using TCP/IPv4 socket.
